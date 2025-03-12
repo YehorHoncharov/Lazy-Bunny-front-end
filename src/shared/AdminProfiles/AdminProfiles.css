@@ -1,0 +1,34 @@
+
+.adminProfiles{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.admin-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#admin-img-search{
+    position: relative;
+    right: 50px;
+}
+
+.admin-input{
+    width: 431px;
+    height: 66px;
+    color: #161C22;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 15px;
+    padding: 0px 20px 0px 20px;
+    left: 50px;
+}
+
+.admin-input::placeholder{
+    color: rgba(22,28,34, 1);
+}
