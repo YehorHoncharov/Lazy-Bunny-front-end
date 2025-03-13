@@ -1,26 +1,25 @@
 import { Link } from 'react-router-dom'
 import './CardBunny.css'
+import { IFilm } from '../../hooks/types'
+import { useContext } from 'react'
+import { recentFilmsContext } from '../MovieApp/MovieApp'
 
-
-export interface ICARDSProps {
-    id: number,
-    name: string,
-    img: string,
-    rating: number,
-    year: number,
-    genre: string,
-    description: string,
-    moodImg: string,
+interface ICardFilm{
+    film: IFilm
 }
 
-export function Card(props: ICARDSProps){
+export function Card(props: ICardFilm){
+    
+    const {film} = props
+    const {addFilms} = useContext(recentFilmsContext)
+    
     return (
-        <Link to={`/movie/${props.id}`} >
+        <Link to={`/movie/${film.id}`} onClick={() => {addFilms(film)}}>
             <div className="card">
 
                 <div>
                     <button className="saveButton"><img src="/static/img/SaveCard.png" alt="" /></button>
-                    <img src={props.img} alt="" className='movieImg'/>
+                    <img src={film.Img} alt="" className='movieImg'/>
                 </div>
 
                 <div className='rating'>
@@ -29,17 +28,18 @@ export function Card(props: ICARDSProps){
                     <img src="/static/img/FullStar.png" alt="" />
                     <img src="/static/img/FullStar.png" alt="" />
                     <img src="/static/img/HalfStar.png" alt="" />
-                    <p>{props.rating}/5</p>
+                    <p>{film.Rating}/10</p>
                 </div>
 
                 <div>
-                    <p className='movieLables movieName'>{props.name}</p>
+                    <p className='movieLables movieName'>{film.Name.slice(0,19)}</p>
                 </div>
 
 
 
                 <div>
-                    <p className='movieLables movieData'>{props.year}, {props.genre}</p>
+                    <p className='movieLables movieData'>{film.Year}
+                    </p>
                     
                     
                     
@@ -47,7 +47,7 @@ export function Card(props: ICARDSProps){
                 <div className='buttonAndMood'>
                     <button className='buttonTrailer'><img src="/static/img/triangleCardBunny.png" alt="" /> <p>Trailer</p></button>
                     <img src="" alt="" />
-                    <img src={props.moodImg} alt="" />
+        
                 </div>
     
                 

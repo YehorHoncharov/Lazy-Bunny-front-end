@@ -1,0 +1,60 @@
+
+.RegistrationPage{
+    background-image: url("../../../public/static/img/MainPage.png");
+    background-size: cover; /* Зображення розтягується, щоб покрити весь блок */
+    background-repeat: no-repeat; /* Зображення не повторюється */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+}
+
+.reg-mainDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.H1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Mochiy Pop P One", sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    color: #FFFFFF;
+}
+.InputReg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+    width: 901px;
+    height: 83px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+}
+.Reg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(86,146,169);
+    background: linear-gradient(90deg, rgba(86,146,169,1) 0%, rgba(34,58,67,1) 100%);
+    width: 901px;
+    height: 83px;
+    border-radius: 16px;
+    font-family: "Mochiy Pop P One", sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    color: #FFFFFF;
+}
+
+.InputReg{
+    padding: 30px;
+}

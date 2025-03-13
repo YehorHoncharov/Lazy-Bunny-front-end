@@ -10,4 +10,24 @@
     font-size: 36px;
     color: #FFFFFF;
     padding: 40px;
+    gap: 20px;
+}
+
+.category-recent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.filteredFilm{
+    display: flex;
+    flex-direction: row;
+    gap: 22px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* margin-bottom: 40px; */
 }

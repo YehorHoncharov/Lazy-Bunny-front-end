@@ -14,6 +14,7 @@
     "lazy-bunny-front-end": "github:YehorHoncharov/Lazy-Bunny-front-end",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-loader-spinner": "^6.1.6",
     "react-router-dom": "^7.0.2",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
@@ -42,6 +43,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy" : "http://localhost:3001"
+  }
 }

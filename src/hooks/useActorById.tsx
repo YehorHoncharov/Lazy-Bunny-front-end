@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react'
-import { IFilm } from './types'
+import { IActor } from './types'
 
 
-export function useFilmByID(id: number) {
-    const [film, setFilm] = useState<IFilm>()
+export function useActorByID(id: number) {
+    const [actor, setActor] = useState<IActor>()
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<string>()
 
     useEffect(() => {
-        async function getFilm() {
+        async function getActor() {
             try {
                 setIsLoading(true)
-                const response = await fetch(`http://localhost:3001/movies/${id}`)
-                const film = await response.json()
+                const response = await fetch(`http://localhost:3001/movies/actor/${id}`)
+                const actor = await response.json()
                 
-                setFilm(film)
+                setActor(actor)
                 
             }
             catch (error) {
@@ -30,13 +30,13 @@ export function useFilmByID(id: number) {
             }
         }
         
-        getFilm()
+        getActor()
         
     }, [id])
     
 
     
-    return {film: film, isLoading: isLoading, error: error}
+    return {actor: actor, isLoading: isLoading, error: error}
 
     
 }
