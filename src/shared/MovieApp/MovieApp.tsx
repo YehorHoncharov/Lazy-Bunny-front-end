@@ -8,6 +8,10 @@ import { IFilm } from "../../hooks/types";
 import { ActorPage } from "../../pages/ActorPage/ActorPage";
 import { AuthorisationPage } from "../../pages/AuthorisationPage/Authorisation";
 import { RegistrationPage } from "../../pages/RegistrationPage/Registration";
+import { AdminPage } from "../../pages/AdminPage/AdminPage";
+import { AdminProfiles } from "../AdminProfiles/AdminProfiles";
+import { AdminMovies } from "../AdminMovies/AdminMovies";
+import { AdminGenres } from "../AdminGenres/AdminGenres";
 
 interface IRecentFilms {
   addFilms: (film: IFilm) => void;
@@ -48,6 +52,11 @@ export function MovieApp() {
             <Route path="/movie/actor/:id" element={<ActorPage></ActorPage>}></Route>
             <Route path="/reg" element={<RegistrationPage></RegistrationPage>}></Route>
             <Route path="/auth" element={<AuthorisationPage></AuthorisationPage>}></Route>
+            <Route path="/admin" element={<AdminPage></AdminPage>}>
+              <Route path="/admin/movies" element={<AdminMovies></AdminMovies>}></Route>
+              <Route path="/admin/profiles" element={<AdminProfiles></AdminProfiles>}></Route>
+              <Route path="/admin/genres" element={<AdminGenres></AdminGenres>}></Route>
+            </Route>
           </Routes>
         </BrowserRouter>
         </recentFilmsContext.Provider>
