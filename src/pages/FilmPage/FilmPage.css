@@ -1,0 +1,11 @@
+
+.filmPage{
+    background-image: url("../../../public/static/img/MainPage.png");
+    background-size: cover; /* Зображення розтягується, щоб покрити весь блок */
+    background-repeat: no-repeat; /* Зображення не повторюється */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    overflow: hidden
+}

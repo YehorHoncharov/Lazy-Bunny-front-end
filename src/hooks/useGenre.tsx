@@ -6,19 +6,20 @@ export function useGenre() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
 
-
     useEffect(() => {
         async function fetchGenres() {
             try {
-                setLoading(true);
+                setLoading(true)
                 const response = await fetch("http://localhost:3001/movies")
+                if (!response.ok) throw new Error("Ошибка загрузки жанров")
+
                 const genresData = await response.json()
-                setGenres(genresData);
+                setGenres(genresData)
             } catch (error) {
                 if (error instanceof Error) {
                     setError(error.message)
                 }
-                console.log(error)
+                console.error(error)
             } finally {
                 setLoading(false)
             }
@@ -26,8 +27,7 @@ export function useGenre() {
         fetchGenres()
     }, [])
 
-
-    const addGenre = async (name: string) => {
+    async function addGenre(name: string) {
         try {
             setLoading(true)
             const response = await fetch("http://localhost:3001/movies", {
@@ -49,8 +49,7 @@ export function useGenre() {
         }
     }
 
-
-    const updateGenre = async (id: number, name: string) => {
+    async function updateGenre(id: number, name: string) {
         try {
             setLoading(true)
             const response = await fetch(`http://localhost:3001/movies/${id}`, {
@@ -71,10 +70,9 @@ export function useGenre() {
         } finally {
             setLoading(false)
         }
-    };
+    }
 
-
-    const deleteGenre = async (id: number) => {
+    async function deleteGenre(id: number) {
         try {
             setLoading(true);
             const response = await fetch(`http://localhost:3001/movies/${id}`, {
@@ -94,11 +92,11 @@ export function useGenre() {
     }
 
     return {
-             genres: genres,
-             loading: loading,
-             error:error,
-             addGenre:addGenre,
-             updateGenre:updateGenre,
-             deleteGenre:deleteGenre
-}
+        genres,
+        loading,
+        error,
+        addGenre,
+        updateGenre,
+        deleteGenre,
+    }
 }

@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+ 
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+    height: 75px;
+    background-color: transparent;
+    border-top: solid white;
+}
+
+.font{
+    font-family: "Comic Sans MS", cursive;
+    font-size: 11px;
+}
+
+.logodiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+    margin: 1px;
+    color: white;
+    text-decoration: none;
+}
+
+.div2 {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-direction: column;
+    padding-right: 30px;
+}
+
+.textgradient {
+    background: linear-gradient(to bottom, #E1DD73, #655e5e);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 32px;
+}
+
+.footerNames {
+    gap: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.namefont {
+    color: white;
+    text-decoration: none;
+}
+
+.namefont:hover {
+    text-decoration: underline;
+}
+
+.footerTeam {
+    display: flex;
+    align-items: center;
+    margin-left: 53px;
+}
+
+.socialMedia {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+}
+
+.socialMedia a{
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    transition: font-size 0.3s ease, text-decoration 0.3s ease;
+}
+
+.socialMedia a:hover{
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.catalog {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.catalog a{
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    transition: font-size 0.3s ease, text-decoration 0.3s ease;
+}
+
+.catalog a:hover{
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.footerSocMedia {
+    width: 18.5px;
+    height: 18px;
+}
+
+.viber {
+    display: flex;
+    gap: 3px;
+}
+
+.instagram {
+    display: flex;
+    gap: 3px;
+}
+.telegram {
+    display: flex;
+    gap: 3px;
+}
+
+.facebook {
+    display: flex;
+    gap: 3px;
+}

@@ -1,6 +1,5 @@
 import { useState, useRef } from "react"
 import "./SearchBar.css"
-// import { Modal } from "../Modal/Modal"
 import { Link } from "react-router-dom"
 import { IGenre } from "../../hooks/types"
 import { useGenre } from "../../hooks/useGenre"

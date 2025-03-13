@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.comments{
+    font-family: "Inter", serif;
+    margin-left: 30px;
+}
+
+.commentInputDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.commentInput{
+    width: 90%;
+    height: 150px;
+    border-radius: 22px;
+    background-color: #6C6C6C;
+    border: none;
+    font-size: 20px;
+    text-align: start;
+    margin-top: 20px;
+    padding-left: 20px;
+    color: white;
+    position: relative;
+   
+}
+
+.commentInput::placeholder{
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.commentsNameAndSend{
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    gap: 10px; 
+    padding: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+
+}
+
+.commentInputName{
+    width: 299px;
+    height: 56px;
+    background-color: #727272;
+    border: white;
+    color: white;
+    padding-left: 20px;    
+    padding-top: 15px;
+}
+.commentInputName::placeholder{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    right: 5px;
+}
+
+.sendComment{
+    background-color: #506F79;
+    width: 299px;
+    height: 56px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 700px;
+}
+
+.commentsDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+

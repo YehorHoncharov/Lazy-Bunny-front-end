@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Mochiy+Pop+P+One&display=swap');
+
+.search{
+    width: 100%;
+    height: auto;
+    min-height: 473px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 41px;
+}
+
+.searchBunny{
+    position: absolute;
+    height: 97px;
+    width: 154px;
+    display: block;
+    z-index: 2;
+    padding-bottom: 120px;
+}
+
+.input{
+    /* position: absolute; */
+    z-index: 1;
+    width: 629px;
+    height: 83px;
+    border-radius: 15px;
+    padding-left: 30px;
+}
+
+
+
+.serchInput{
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+}
+
+#textSearch{
+    font-family: "Mochiy Pop P One", sans-serif;
+    font-size: 72px;
+    color: white;
+    margin-top: 50px;
+}
+
+#buttonFind{
+    width: 275px;
+    height: 77px;
+    font-family: "Mochiy Pop P One", sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(45deg, #5692A9, #223A43); 
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+#buttonFind:hover{
+    opacity: 0.5;
+}

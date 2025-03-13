@@ -1,3 +1,26 @@
+
+.RegistrationPage{
+    background-image: url("../../../public/static/img/MainPage.png");
+    background-size: cover; /* Зображення розтягується, щоб покрити весь блок */
+    background-repeat: no-repeat; /* Зображення не повторюється */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+}
+
+.reg-mainDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
 .H1{
     display: flex;
     align-items: center;
@@ -17,7 +40,7 @@
     border-radius: 16px;
     margin-bottom: 25px;
 }
-.Auth {
+.Reg {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,11 +55,6 @@
     color: #FFFFFF;
 }
 
-.AuthorizationPage{
-    background-image: url("../../../public/static/img/MainPage.png");
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+.InputReg{
+    padding: 30px;
 }

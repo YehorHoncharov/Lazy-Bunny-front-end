@@ -15,6 +15,7 @@ interface IModalProps {
 export function Modal(props: IModalProps){
     let {children, allowModalCloseOutside, onClose, container=document.body, className} = props
 
+
     function handleClickOutside(event: MouseEvent){
     
         console.log(event.target)
