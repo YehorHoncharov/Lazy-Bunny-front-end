@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react"
-import { IFilm } from "./types"
+import { IUser } from "./types"
 
-export function useGetAllFilms(){
-    const [films, setFilms] = useState<IFilm[]>([])
+export function useUsers(){
+    const [users, setUsers] = useState<IUser[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>()
     
     useEffect(()=>{
-        async function getFilms(){
+        async function getUsers(){
             try{
                 setIsLoading(true)
-                const response = await fetch('http://localhost:3001/movies')
-                const films = await response.json()
-                setFilms(films)
+                const response = await fetch('http://localhost:3001/users')
+                const users = await response.json()
+                setUsers(users)
                 }
             catch(error){
                 if (error instanceof Error){
@@ -24,9 +24,9 @@ export function useGetAllFilms(){
             }
             
         }
-        getFilms()
+        getUsers()
         
     },[])
-    return {films: films, isLoading: isLoading, error: error}
+    return {users: users, isLoading: isLoading, error: error}
 
 }

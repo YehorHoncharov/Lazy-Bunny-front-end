@@ -9,7 +9,7 @@ import { useGetAllFilms } from "../../hooks/useGetAllFilms";
 export function CategoriesOfMovies() {
     const { recentFilms } = useContext(recentFilmsContext);
     const [recomendedFilms, setRecommendedFilms] = useState<IFilm[]>([])
-    const { films} = useGetAllFilms();
+    const { films } = useGetAllFilms();
 
    
 

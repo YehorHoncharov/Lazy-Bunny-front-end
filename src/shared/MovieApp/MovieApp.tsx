@@ -12,8 +12,9 @@ import { AdminPage } from "../../pages/AdminPage/AdminPage";
 import { AdminProfiles } from "../AdminProfiles/AdminProfiles";
 import { AdminMovies } from "../AdminMovies/AdminMovies";
 import { AdminGenres } from "../AdminGenres/AdminGenres";
-import { AdminFilm } from "../AdminFilm/AdminFilm";
+import { AdminProfile } from "../AdminProfile/AdminProfile";
 import { AdminComments } from "../AdminComments/AdminComments";
+import { AdminFilm } from "../AdminFilm/AdminFilm";
 
 interface IRecentFilms {
   addFilms: (film: IFilm) => void;
@@ -57,6 +58,7 @@ export function MovieApp() {
             <Route path="/admin" element={<AdminPage></AdminPage>}>
               <Route path="/admin/movies" element={<AdminMovies></AdminMovies>}></Route>
               <Route path="/admin/profiles" element={<AdminProfiles></AdminProfiles>}></Route>
+              <Route path="/admin/profile/:id" element={<AdminProfile></AdminProfile>}></Route>
               <Route path="/admin/genres" element={<AdminGenres></AdminGenres>}></Route>
               <Route path="/admin/movie/:id" element={<AdminFilm></AdminFilm>}></Route>
               <Route path="/admin/movie/:id/comments" element={<AdminComments></AdminComments>}></Route>

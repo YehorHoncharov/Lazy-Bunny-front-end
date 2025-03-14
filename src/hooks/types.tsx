@@ -19,7 +19,8 @@ export interface IFilm{
     Comments: IComment[]
 }
 export interface IComment{
-    author: string,
+    id: number
+    author: IUser,
     text: string,
     children?: ReactNode
     commentId: number
@@ -39,4 +40,14 @@ export interface IActor{
 export interface IGenre{
     id: number,
     name: string,
+}
+
+export interface IUser{
+    id: number,
+    nickname: string,
+    email: string,
+    password: string,
+    age?: number,
+    role: string,
+    image?: string
 }
