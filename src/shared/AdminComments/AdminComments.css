@@ -1,0 +1,50 @@
+.adminComments{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+.adminCommentCard{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 15px;
+    background-color: #696969;
+    width: 475px;
+    height: 175px;
+    font-size: 20px;
+
+}
+.commentDate{
+    display: flex;
+    position: absolute;
+    right: 10;
+}
+.adminCommentInfoDate{
+    display: flex;
+}
+.adminCommentInfo{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.textAndButtons{
+    display: flex;
+    
+}
+.commentButts{
+    background: none;
+    border: none;
+}
+.commentsButtsCon{
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.commentText{
+    width: 300px;
+}
