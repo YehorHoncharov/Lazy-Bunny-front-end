@@ -40,3 +40,13 @@ export interface IGenre{
     id: number,
     name: string,
 }
+
+export interface IUser{
+    id: number,
+    nickname: string,
+    email: string,
+    password: string,
+    age?: number,
+    role: string,
+    image?: string
+}
