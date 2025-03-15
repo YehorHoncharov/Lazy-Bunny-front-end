@@ -40,6 +40,15 @@ export function AllMovies() {
 
   }
 
+  function handleRemoveGenre(genre: string){
+     const update_genres = selectedGenre.filter((g) => g !== genre)
+     setSelectedGenre(update_genres);
+
+    //  if (update_genres.length === 0) {
+    //    setSelectedGenre(["AllGenre"])
+    //  }
+  };
+
 
   useEffect(() => {
     if (selectedGenre.length === 0) {
@@ -105,7 +114,14 @@ export function AllMovies() {
         </div>
       </div>
       <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-        <p style={{fontSize: "24", color: "white", fontWeight: "bold"}}>{selectedGenre}</p>
+      {selectedGenre.map((genre) => (
+          <div key={genre} style={{ display: 'inline-block', margin: '5px' }}>
+            <button onClick={() => handleRemoveGenre(genre)}>
+              {genre} <span style={{ color: 'red' }}>×</span>
+            </button>
+          </div>
+        ))}
+        {/* <button style={{fontSize: "24", color: "white", fontWeight: "bold", backgroundColor: "transparent", width: 100}}>{selectedGenre}</button> */}
       </div>
 
       <div className="cardsList">

@@ -7,15 +7,22 @@ export function RegistrationPage(){
     return(
         <div className = 'RegistrationPage'>
             <Header></Header>
-            <div className='reg-mainDiv'>
-                <h1 className='H1'>Registration</h1>
-        
-                <form method='POST'>
-                    <input type="text" placeholder="Enter your nickname" className='InputReg' />
-                    <input type="text" placeholder="Enter email" className='InputReg'/>
-                    <input type="text" placeholder="Enter password" className='InputReg'/>
-                    <button type="submit" className='Reg'>Registration</button>
-                </form>
+                <div className="wrapper">
+                    <form method='POST'>
+                    <h2>Create account</h2>
+                        <div className="input-field">
+                        <input type="text" required/>
+                        <label>Enter your email</label>
+                    </div>
+                    <div className="input-field">
+                        <input type="password" required/>
+                        <label>Enter your password</label>
+                    </div>
+                    <button type="submit">Create your account</button>
+                    <div className="register">
+                        <p>Do you have an account? <a id='SignIn' href="/auth">  Sign in</a></p>
+                    </div>
+                    </form>
                 </div>
             <Footer />
         </div>

@@ -1,11 +1,12 @@
 
 .contener{
-    background-image: url("../../../public/static/img/MainPage.png");
+    background-color: rgb(	57, 62, 83, 0.7);
+    background-image: url("../../../public/static/img/Frame70.png");
     background-size: cover; /* Зображення розтягується, щоб покрити весь блок */
     background-repeat: no-repeat; /* Зображення не повторюється */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    overflow: hidden
+    overflow: hidden;
 }

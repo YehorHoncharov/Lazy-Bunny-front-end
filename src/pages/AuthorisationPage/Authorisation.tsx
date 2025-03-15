@@ -5,18 +5,25 @@ import "./Authorisation.css"
 
 export function AuthorisationPage(){
     return(
-        <div className = 'RegistrationPage'>
+        <div className = 'AuthorizationPage'>
             <Header></Header>
-            <div className='reg-mainDiv'>
-                <h1 className='H1'>Authorization</h1>
-        
+            <div className="wrapper">
                 <form method='POST'>
-                    <input type="text" placeholder="Enter your nickname" className='InputReg' />
-                    <input type="text" placeholder="Enter email" className='InputReg'/>
-                    <input type="text" placeholder="Enter password" className='InputReg'/>
-                    <button type="submit" className='Reg'>Authorization</button>
-                </form>
+                <h2>Login</h2>
+                    <div className="input-field">
+                    <input type="text" required/>
+                    <label>Enter your email</label>
                 </div>
+                <div className="input-field">
+                    <input type="password" required/>
+                    <label>Enter your password</label>
+                </div>
+                <button type="submit">Log In</button>
+                <div className="register">
+                    <p>Don't have an account? <a id='Register' href="/reg">  Register</a></p>
+                </div>
+                </form>
+            </div>
             <Footer />
         </div>
     )

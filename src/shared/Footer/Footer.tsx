@@ -16,7 +16,7 @@ export function Footer(){
                 <div className='div1'>
                     <div className='catalog'>
                         <Link to={'/movies'}>
-                            <a className='div1'>Movies</a>
+                            <a className='div1' href='/'>Movies</a>
                         </Link>
                         <a className='div1' href="/">Shows</a>
                         <a className='div1' href="/">Mood</a>
@@ -46,6 +46,7 @@ export function Footer(){
                         <a className='namefont' href="/">Bohdanchik</a>
                         <a className='namefont' href="/">Sema</a>
                         <a className='namefont' href="/">Egorushka</a>
+                        <a className='namefont' href="/">Mirosya</a>
                     </div>
                     <div className='footerTeam'>
                         <a className='namefont' href="/">Created by Team1</a>

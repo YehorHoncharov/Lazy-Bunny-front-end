@@ -1,9 +1,9 @@
 
 .mainFrame{
-    background-image: url("../../../public/static/img/MainBunny.png");
+    background-image: url("../../../public/static/img/Rabbit.png");
     background-size: cover; /* Зображення розтягується, щоб покрити весь блок */
     background-repeat: no-repeat; /* Зображення не повторюється */
-    height: 920px;
+    height: 612px;
     width: auto;
 }
 
