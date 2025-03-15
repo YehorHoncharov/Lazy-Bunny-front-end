@@ -11,7 +11,7 @@ export function CardComment(props: IComment){
                     </div>
                     <div className="commentNameAndText">
         
-                        <p className="commentName">{props.author}</p>
+                        <p className="commentName">{props.author.nickname}</p>
                         <p className="commentText">{props.text}</p>
                     </div>
                     

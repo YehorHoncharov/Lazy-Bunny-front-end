@@ -1,26 +1,27 @@
 import { useState } from "react";
 import { useGenre } from "../../hooks/useGenre";
 import "./AdminGenres.css";
+import { ProgressBar } from "react-loader-spinner";
 
 
 export function AdminGenres() {
-
-    const { genres, addGenre, deleteGenre, updateGenre } = useGenre();
+    const { genres, addGenre, deleteGenre, updateGenre, isLoading, error } = useGenre();
     const [newGenre, setNewGenre] = useState("");
     const [editGenres, setEditGenres] = useState<Record<number, string>>({});
     
-    const AddGenre = async () => {
+
+    async function AddGenre(){
         if (newGenre.trim()) {
             await addGenre(newGenre);
             setNewGenre('');
         }
     };
 
-    const EditGenre = (genreId: number, genreName: string) => {
+    function EditGenre(genreId: number, genreName: string){
         setEditGenres((prev) => ({ ...prev, [genreId]: genreName }));
     };
 
-    const SaveGenre = async (genreId: number) => {
+    async function SaveGenre(genreId: number){
         if (editGenres[genreId]?.trim()) {
             await updateGenre(genreId, editGenres[genreId]);
             setEditGenres((prev) => {
@@ -31,54 +32,64 @@ export function AdminGenres() {
         }
     };
 
-    const DeleteGenre = async (id: number) => {
+    async function DeleteGenre(id: number){
         await deleteGenre(id);
     };
 
     return (
-        <div>
-            <h2>Жанры</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Genre</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {genres.map((genre) => (
-                        <tr key={genre.id}>
-                        <tr title={genre.name}>
-                            {/* <td>
-                                <input
-                                    type="text"
-                                    value={editGenres[genre.id] || genre.name}
-                                    onChange={(event) => EditGenre(genre.id, event.target.value)}
-                                />
-                            </td> */}
-                            <td>
-                                {editGenres[genre.id] !== undefined ? (
-                                    <button onClick={() => SaveGenre(genre.id)}>💾</button>
+         <div className="adminProfiles">
+                    <h1 style={{fontSize:48}}>Profiles</h1>
+        
+                    <div className="admin-search">
+                        <input className="admin-input" type="text" placeholder="Search by name or email" />
+                        <img id="admin-img-search" src="/static/img/Frame.svg" alt="" />
+                    </div>
+        
+                    <div className="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Delete/Editing</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {isLoading ? (
+                                    <tr>
+                                    <td colSpan={5}>
+                                        <ProgressBar
+                                        visible={true}
+                                        height="80"
+                                        width="80"
+                                        borderColor="purple"
+                                        barColor="green"
+                                        ariaLabel="progress-bar-loading"
+                                        wrapperStyle={{}}
+                                        wrapperClass=""
+                                        />
+                                    </td>
+                                    </tr>
+                                ) : error ? (
+                                    <tr>
+                                    <td colSpan={5}>{error}</td>
+                                    </tr>
                                 ) : (
-                                    <button onClick={() => EditGenre(genre.id, genre.name)}>✏️</button>
+                                    genres.map((genre) =>
+                                    Array.from({ length: 1 }).map(() => (
+                                    <div key={genre.id}>
+                                        <td>{genre.name}</td>
+                                        <td className="actions">
+                                            <button className="edit"><img src="/static/img/trash-2.png" alt="Edit" /></button>
+                                            <button onClick={() => DeleteGenre(genre.id)}>🗑️</button>
+                                        </td>
+                                    </div>
+                                    ))
+                                    )
                                 )}
-                                <button onClick={() => DeleteGenre(genre.id)}>🗑️</button>
-                            </td>
-                        </tr>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-            <div>
-                <input
-                    type="text"
-                    value={newGenre}
-                    onChange={(e) => setNewGenre(e.target.value)}
-                    placeholder="Добавить жанр"
-                />
-                <button onClick={AddGenre}>➕ Добавить</button>
-            </div>
-        </div>
-    );
+                            </tbody>
+                        </table>
+                    </div>
+        
+                </div>
+    )
 }

@@ -3,16 +3,14 @@ import { IGenre } from "./types"
 
 export function useGenre() {
     const [genres, setGenres] = useState<IGenre[]>([])
-    const [loading, setLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState("")
 
     useEffect(() => {
         async function fetchGenres() {
             try {
-                setLoading(true)
-                const response = await fetch("http://localhost:3001/movies")
-                if (!response.ok) throw new Error("Ошибка загрузки жанров")
-
+                setIsLoading(true)
+                const response = await fetch("http://localhost:3001/genres")
                 const genresData = await response.json()
                 setGenres(genresData)
             } catch (error) {
@@ -21,7 +19,7 @@ export function useGenre() {
                 }
                 console.error(error)
             } finally {
-                setLoading(false)
+                setIsLoading(false)
             }
         }
         fetchGenres()
@@ -29,14 +27,12 @@ export function useGenre() {
 
     async function addGenre(name: string) {
         try {
-            setLoading(true)
+            setIsLoading(true)
             const response = await fetch("http://localhost:3001/movies", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name }),
             })
-
-            if (!response.ok) throw new Error("Ошибка при добавлении жанра")
 
             const newGenre = await response.json()
             setGenres((prev) => [...prev, newGenre])
@@ -45,20 +41,18 @@ export function useGenre() {
                 setError(error.message)
             }
         } finally {
-            setLoading(false)
+            setIsLoading(false)
         }
     }
 
     async function updateGenre(id: number, name: string) {
         try {
-            setLoading(true)
+            setIsLoading(true)
             const response = await fetch(`http://localhost:3001/movies/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name }),
             })
-
-            if (!response.ok) throw new Error("Ошибка при обновлении жанра");
 
             setGenres((prev) =>
                 prev.map((genre) => (genre.id === id ? { ...genre, name } : genre))
@@ -68,18 +62,16 @@ export function useGenre() {
                 setError(error.message)
             }
         } finally {
-            setLoading(false)
+            setIsLoading(false)
         }
     }
 
     async function deleteGenre(id: number) {
         try {
-            setLoading(true);
+            setIsLoading(true);
             const response = await fetch(`http://localhost:3001/movies/${id}`, {
                 method: "DELETE",
             })
-
-            if (!response.ok) throw new Error("Ошибка при удалении жанра")
 
             setGenres((prev) => prev.filter((genre) => genre.id !== id))
         } catch (error) {
@@ -87,13 +79,13 @@ export function useGenre() {
                 setError(error.message)
             }
         } finally {
-            setLoading(false)
+            setIsLoading(false)
         }
     }
 
     return {
         genres,
-        loading,
+        isLoading,
         error,
         addGenre,
         updateGenre,

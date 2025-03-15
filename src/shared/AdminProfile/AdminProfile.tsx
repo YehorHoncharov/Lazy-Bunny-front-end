@@ -21,7 +21,7 @@ export function AdminProfile(){
     }
 
     if (!user) {
-        return <div className="profile-main-div">Post not found</div>;
+        return <div className="profile-main-div">User not found</div>;
     }
 
     return (
@@ -37,19 +37,19 @@ export function AdminProfile(){
                 <div className="profile-info-div">
                     <div className="info-div">
                         <p className="profile-text">Name:</p>
-                        <input type="text" placeholder={user.nickname}/>
+                        <input className="profile-input" type="text" placeholder={user.nickname}/>
                     </div>
                     <div className="info-div">
                         <p className="profile-text">Password:</p>
-                        <input type="text" placeholder="Entered your a new password"/>
+                        <input className="profile-input" type="text" placeholder="Entered your a new password"/>
                     </div>
                     <div className="info-div">
                         <p className="profile-text">Email:</p>
-                        <input type="text" placeholder={user.email}/>
+                        <input className="profile-input" type="text" placeholder={user.email}/>
                     </div>
                     <div className="info-div">
                         <p className="profile-text">Age:</p>
-                        <input type="text" placeholder={user.age?.toString()}/>
+                        <input className="profile-input" type="text" placeholder={user.age?.toString()}/>
                     </div>
 
                     <button className="panel-button">Save</button>

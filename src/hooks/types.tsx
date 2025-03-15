@@ -19,7 +19,8 @@ export interface IFilm{
     Comments: IComment[]
 }
 export interface IComment{
-    author: string,
+    id: number
+    author: IUser,
     text: string,
     children?: ReactNode
     commentId: number
