@@ -1,9 +1,15 @@
 
-.adminPage{
+.adminPage {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+    flex-direction: row;
+    flex: 1; /* Контейнер буде розширюватися, щоб зайняти доступний простір */
     width: 100%;
-    gap: 30px;
+}
+
+AdminFrame {
+    flex: 1; /* AdminFrame буде займати доступний простір */
+}
+
+.panel {
+    flex: 0 0 auto; /* Панелька не буде розширюватися, але буде змінювати розмір відповідно до контенту */
 }

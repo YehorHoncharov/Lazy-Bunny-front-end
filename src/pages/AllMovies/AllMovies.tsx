@@ -17,7 +17,7 @@ import { useGenre } from "../../hooks/useGenre";
 // ]
 
 export function AllMovies() {
-  const { genres, loading: genresLoading, error: genresError } = useGenre();
+  const { genres, isLoading: genresLoading, error: genresError } = useGenre();
 
   const { films, isLoading, error } = useGetAllFilms();
   const [filteredMovies, setFilteredMovies] = useState(films);

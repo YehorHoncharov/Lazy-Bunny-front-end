@@ -23,7 +23,9 @@ export function FilmComments(props: IFilmCommentsProps){
             
             <div className="commentsDiv">
                 {film.Comments.map((comment) =>{
-                        return <CardComment 
+                        return <CardComment
+                         
+                        id={comment.id}
                         author={comment.author}
                         text={comment.text}
                         commentId={comment.commentId}>      
