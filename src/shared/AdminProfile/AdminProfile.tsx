@@ -8,19 +8,17 @@ export function AdminProfile() {
   const { id } = useParams()
   const { user, isLoading, error } = useUserByID(Number(id))
 
-  const [selectedImage, setSelectedImage] = useState<string | null>(null); // Для зберігання вибраного зображення
-  const fileInputRef = useRef<HTMLInputElement>(null); // Реф для <input type="file">
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
-  // Обробник вибору файлів
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0]
-      const imageUrl = URL.createObjectURL(file) // Створюємо URL для нового зображення
+      const imageUrl = URL.createObjectURL(file)
       setSelectedImage(imageUrl)
     }
   };
 
-  // Викликаємо клік на <input type="file"> при натисканні на кнопку
   const handleUploadClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click()
@@ -61,7 +59,7 @@ export function AdminProfile() {
             accept="image/*"
             onChange={handleFileChange}
             ref={fileInputRef}
-            style={{ display: "none" }} // Приховуємо input
+            style={{ display: "none" }}
           />
           <button className="panel-button" onClick={handleUploadClick}>
             Upload

@@ -49,5 +49,6 @@ export interface IUser{
     password: string,
     age?: number,
     role: string,
-    image?: string
+    image?: string,
+    Comments: IComment[]
 }

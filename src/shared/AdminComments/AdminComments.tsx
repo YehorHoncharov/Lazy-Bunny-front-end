@@ -1,49 +1,23 @@
 import { useParams } from "react-router-dom";
-import { IFilm } from "../../hooks/types";
-import { CardComment } from "../CardComment/CardComment";
-import { useFilmByID } from "../../hooks/useFilmByID";
+import { IUser } from "../../hooks/types";
 import { useEffect, useState } from "react";
 import './AdminComments.css'
+import { useUserByID } from "../../hooks/useUserById";
 
 
 export function AdminComments(){
     const {id} = useParams()
-    const {film, addComment, updateComment, deleteComment} = useFilmByID(Number(id))
-    const [filmState, setFilmState] = useState<IFilm>()
-    const [newComment, setNewComment] = useState("");
-    const [editComments, setEditComments] = useState<Record<number, string>>({});
+    const {user, deleteComment} = useUserByID(Number(id))
+    const [userState, setUserState] = useState<IUser>()
+   
     
-    async function AddComment(){
-        if (newComment.trim()) {
-            await addComment(newComment);
-            setNewComment('');
-        }
-    };
-
-    function EditComment(commentId: number, commentText: string){
-        setEditComments((prev) => ({ ...prev, [commentId]: commentText }));
-    };
-
-    async function SaveGenre(commentId: number){
-        if (editComments[commentId]?.trim()) {
-            await updateComment(commentId, editComments[commentId]);
-            setEditComments((prev) => {
-                const newEditComment = { ...prev };
-                delete newEditComment[commentId];
-                return newEditComment;
-            });
-        }
-    };
-
-    async function DeleteGenre(id: number){
-        await deleteComment(id);
-    };
+    
       useEffect(() => {
-      if (film){
-        setFilmState(film)
+      if (userState){
+        setUserState(user)
       }
-    }, [film])
-    console.log(filmState)
+    }, [userState])
+    console.log(userState)
     return(
         <div className="adminComments">
             <div className="adminProfiles">
@@ -58,17 +32,17 @@ export function AdminComments(){
                         <input className="admin-input" type="text" placeholder="Filter by ..." />
                     </div>
                     <div>
-                    {!filmState? <div>No film</div>: 
-                        <h1>{filmState.Name}</h1>}
+                    {!userState? <div>No film</div>: 
+                        <h1>{userState.nickname}</h1>}
                     </div>
                     
                 </div>
             </div>
-            {!filmState? <div>No film</div>: 
+            {!userState? <div>No film</div>: 
 
         
             <div className="commentsDiv">
-                            {filmState.Comments.map((comment) =>{
+                            {userState.Comments.map((comment) =>{
                                     return (
                                         <div className="adminCommentCard">
                                             <div className="adminCommentInfoDate">
@@ -88,7 +62,7 @@ export function AdminComments(){
                                                 
                                                 <div className="commentsButtsCon">
                                                     <button className="commentButts"><img src="/static/img/changeBut.png" alt="" /></button>
-                                                    <button className="commentButts"><img src="/static/img/trash-2.png" alt="" /></button>
+                                                    <button onClick={() => deleteComment(comment.id)} className="commentButts"><img src="/static/img/trash-2.png" alt="" /></button>
                                                 </div>
                                                 
                                             </div>
