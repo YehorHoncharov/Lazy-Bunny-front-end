@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { IUser } from './types'
+import { IComment, IUser } from './types'
 
 
 export function useUserByID(id: number) {
