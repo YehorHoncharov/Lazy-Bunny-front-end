@@ -7,29 +7,49 @@ import "./AdminProfiles.css";
 import { AdminSearch } from "../AdminSearch/AdminSearch";
 
 export function AdminProfiles() {
-  const { users, isLoading, error } = useUsers()
-  const navigate = useNavigate()
-  const [searchValue, setSearchValue] = useState("")
-  const [searchResults, setSearchResults] = useState(users)
+  const { users, isLoading, error } = useUsers();
+  const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState("");
+  const [searchResults, setSearchResults] = useState(users);
 
   useEffect(() => {
     setSearchResults(users);
   }, [users]);
 
   const handleSearchChange = (value: string) => {
-    setSearchValue(value)
+    setSearchValue(value);
 
     const filteredResults = users.filter(
       (user) =>
         user.nickname.toLowerCase().includes(value.toLowerCase()) ||
         user.email.toLowerCase().includes(value.toLowerCase())
-    )
+    );
 
-    setSearchResults(filteredResults)
-  }
+    setSearchResults(filteredResults);
+  };
 
   const handleSearchClick = () => {
-    console.log("Search icon clicked!")
+    console.log("Search icon clicked!");
+  };
+
+  const handleDelete = async (event: React.MouseEvent, userId: number) => {
+    console.log("Delete button clicked"); // Додано логування
+    event.stopPropagation();
+
+    try {
+      const response = await fetch(`http://localhost:3001/users/${userId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete user");
+      }
+
+      const updatedUsers = users.filter((user) => user.id !== userId);
+      setSearchResults(updatedUsers);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
   };
 
   return (
@@ -90,11 +110,14 @@ export function AdminProfiles() {
                     <td>{user.role}</td>
                     <td>{user.age}</td>
                     <td className="actions">
-                      <button className="edit">
-                        <img src="/static/img/trash-2.png" alt="Edit" />
+                      <button
+                        className="delete"
+                        onClick={(event) => handleDelete(event, user.id)}
+                      >
+                        <img src="/static/img/trash-2.png" alt="Delete" />
                       </button>
-                      <button className="delete">
-                        <img src="/static/img/edit-3.png" alt="Delete" />
+                      <button className="edit">
+                        <img src="/static/img/edit-3.png" alt="Edit" />
                       </button>
                     </td>
                   </tr>
@@ -109,5 +132,5 @@ export function AdminProfiles() {
         </table>
       </div>
     </div>
-  )
+  );
 }
