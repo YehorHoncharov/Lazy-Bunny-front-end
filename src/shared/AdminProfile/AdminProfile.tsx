@@ -1,36 +1,112 @@
-import { useParams } from "react-router-dom"
-import { useUserByID } from "../../hooks/useUserById"
-import "./AdminProfile.css"
-import { ProgressBar } from "react-loader-spinner"
-import { useState, useRef } from "react"
+import { useParams } from "react-router-dom";
+import { useUserByID } from "../../hooks/useUserById";
+import "./AdminProfile.css";
+import { ProgressBar } from "react-loader-spinner";
+import { useState, useRef, useEffect } from "react";
 
 export function AdminProfile() {
-  const { id } = useParams()
-  const { user, isLoading, error } = useUserByID(Number(id))
+  const { id } = useParams();
+  const { user, isLoading, error } = useUserByID(Number(id));
 
-  const [selectedImage, setSelectedImage] = useState<string | null>(null); // Для зберігання вибраного зображення
-  const fileInputRef = useRef<HTMLInputElement>(null); // Реф для <input type="file">
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [nickname, setNickname] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [age, setAge] = useState("");
 
-  // Обробник вибору файлів
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (user) {
+      setNickname(user.nickname || "");
+      setEmail(user.email || "");
+      setAge(user.age?.toString() || "");
+      setSelectedImage(user.image || null);
+    }
+  }, [user]);
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0]
-      const imageUrl = URL.createObjectURL(file) // Створюємо URL для нового зображення
-      setSelectedImage(imageUrl)
+      const file = event.target.files[0];
+      const imageUrl = URL.createObjectURL(file);
+      setSelectedImage(imageUrl);
     }
   };
 
-  // Викликаємо клік на <input type="file"> при натисканні на кнопку
   const handleUploadClick = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.click()
+      fileInputRef.current.click();
+    }
+  };
+
+  async function uploadImage(file: File): Promise<string>{
+    const formData = new FormData();
+    formData.append("image", file);
+  
+    const response = await fetch(`http://localhost:3001/users/${id}`, {
+      method: "POST",
+      body: formData,
+    });
+  
+    if (!response.ok) {
+      throw new Error("Failed to upload image");
+    }
+  
+    const data = await response.json();
+    return data.imageUrl;
+  };
+
+  const handleSave = async () => {
+    try {
+      let imageUrl = user?.image;
+
+      if (fileInputRef.current?.files?.[0]) {
+        const file = fileInputRef.current.files[0];
+        imageUrl = await uploadImage(file);
+      }
+
+      console.log(imageUrl)
+
+      const updatedUser = {
+        nickname,
+        password,
+        email,
+        age: Number(age),
+        image: imageUrl,
+      };
+
+      const response = await fetch(`http://localhost:3001/users/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedUser),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update user");
+      }
+
+      const data = await response.json();
+      console.log("User updated:", data);
+    } catch (error) {
+      console.error("Failed to update user:", error);
     }
   };
 
   if (isLoading) {
     return (
       <div className="profile-main-div">
-        <ProgressBar visible={true} height="80" width="80" borderColor="purple" barColor="green" ariaLabel="progress-bar-loading" wrapperStyle={{}} wrapperClass=""/>
+        <ProgressBar
+          visible={true}
+          height="80"
+          width="80"
+          borderColor="purple"
+          barColor="green"
+          ariaLabel="progress-bar-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
       </div>
     );
   }
@@ -49,7 +125,6 @@ export function AdminProfile() {
 
       <div className="profile-main-content">
         <div className="profile-photo-div">
-
           <img
             className="profile-photo"
             src={selectedImage || user.image || "/static/img/frofileIMG.png"}
@@ -61,7 +136,7 @@ export function AdminProfile() {
             accept="image/*"
             onChange={handleFileChange}
             ref={fileInputRef}
-            style={{ display: "none" }} // Приховуємо input
+            style={{ display: "none" }}
           />
           <button className="panel-button" onClick={handleUploadClick}>
             Upload
@@ -74,6 +149,8 @@ export function AdminProfile() {
             <input
               className="profile-input"
               type="text"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
               placeholder={user.nickname}
             />
           </div>
@@ -81,28 +158,37 @@ export function AdminProfile() {
             <p className="profile-text">Password:</p>
             <input
               className="profile-input"
-              type="text"
-              placeholder="Entered your a new password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter a new password"
             />
           </div>
           <div className="info-div">
             <p className="profile-text">Email:</p>
             <input
               className="profile-input"
-              type="text"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder={user.email}
             />
           </div>
-          <div className="info-div">
+          <div id="age-text" className="info-div">
             <p className="profile-text">Age:</p>
             <input
               className="profile-input"
+              id="age"
               type="text"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
               placeholder={user.age?.toString()}
             />
           </div>
 
-          <button className="panel-button">Save</button>
+          <button className="panel-button" onClick={handleSave}>
+            Save
+          </button>
         </div>
       </div>
     </div>
