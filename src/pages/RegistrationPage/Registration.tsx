@@ -18,7 +18,7 @@ export function RegistrationPage(){
                         <input type="password" required/>
                         <label>Enter your password</label>
                     </div>
-                    <button type="submit">Create your account</button>
+                    <button type="submit" className='reg-button'>Create your account</button>
                     <div className="register">
                         <p>Do you have an account? <a id='SignIn' href="/auth">  Sign in</a></p>
                     </div>

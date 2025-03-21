@@ -89,7 +89,7 @@ h2 {
 .wrapper a:hover {
   text-decoration: underline;
 }
-button {
+.reg-button {
   background: #fff;
   color: #000;
   font-weight: 600;

@@ -18,7 +18,7 @@ export function AuthorisationPage(){
                     <input type="password" required/>
                     <label>Enter your password</label>
                 </div>
-                <button type="submit">Log In</button>
+                <button className='reg-button' type="submit">Log In</button>
                 <div className="register">
                     <p>Don't have an account? <a id='Register' href="/reg">  Register</a></p>
                 </div>
