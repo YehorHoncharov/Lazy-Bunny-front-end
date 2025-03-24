@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { ReactNode } from "react"
 
 export interface IFilm{
@@ -50,5 +52,36 @@ export interface IUser{
     age?: number,
     role: string,
     image?: string,
-    Comments: IComment[]
+    comments: IComment[]
 }
+
+
+export const toastSuccess = toast.success('Данные успешно сохранены!', {
+  position: "top-right",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true
+});
+
+export const toastError = toast.error('Произошла ошибка при сохранении данных!', {
+  position: "top-right",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+});
+
+export interface IError {
+    status: 'error'
+    message: string
+}
+
+export interface ISuccess<T> {
+    status: 'success'
+    data: T
+}
+
+export type Response<T> = IError | ISuccess<T>

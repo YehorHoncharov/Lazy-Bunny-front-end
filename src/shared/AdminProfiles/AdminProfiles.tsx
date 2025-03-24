@@ -16,7 +16,7 @@ export function AdminProfiles() {
     setSearchResults(users);
   }, [users]);
 
-  const handleSearchChange = (value: string) => {
+  function handleSearchChange(value: string){
     setSearchValue(value);
 
     const filteredResults = users.filter(
@@ -28,12 +28,9 @@ export function AdminProfiles() {
     setSearchResults(filteredResults);
   };
 
-  const handleSearchClick = () => {
-    console.log("Search icon clicked!");
-  };
 
-  const handleDelete = async (event: React.MouseEvent, userId: number) => {
-    console.log("Delete button clicked"); // Додано логування
+  async function handleDelete(event: React.MouseEvent, userId: number){
+    console.log("Delete button clicked");
     event.stopPropagation();
 
     try {
@@ -59,7 +56,6 @@ export function AdminProfiles() {
       <AdminSearch
         placeholder="Search by name or email"
         onChange={handleSearchChange}
-        onSearchClick={handleSearchClick}
         className="custom-search-class"
         inputClassName="custom-input-class"
         iconSrc="/static/img/Frame.svg"

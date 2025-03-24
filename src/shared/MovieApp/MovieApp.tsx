@@ -2,7 +2,6 @@ import { createContext, useState } from "react";
 import { AllMovies } from "../../pages/AllMovies/AllMovies";
 import { FilmPage } from "../../pages/FilmPage/FilmPage";
 import { MainPage } from "../../pages/MainPage/MainPage";
-import "./MovieApp.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { IFilm } from "../../hooks/types";
 import { ActorPage } from "../../pages/ActorPage/ActorPage";
@@ -15,6 +14,9 @@ import { AdminGenres } from "../AdminGenres/AdminGenres";
 import { AdminProfile } from "../AdminProfile/AdminProfile";
 import { AdminComments } from "../AdminComments/AdminComments";
 import { AdminFilm } from "../AdminFilm/AdminFilm";
+import { UserContextProvider } from "../../context/userContext";
+
+import "./MovieApp.css";
 
 interface IRecentFilms {
   addFilms: (film: IFilm) => void;
@@ -32,41 +34,69 @@ export const recentFilmsContext = createContext<IRecentFilms>(initialValue);
 export function MovieApp() {
   const [recentFilms, setRecentFilms] = useState<IFilm[]>([]);
 
-  function addFilms(film: IFilm){
-    const filteredFilms = recentFilms.filter(recentFilm => recentFilm.id !== film.id)
-    const filmsArray = [...filteredFilms, film]
+  function addFilms(film: IFilm) {
+    const filteredFilms = recentFilms.filter(
+      (recentFilm) => recentFilm.id !== film.id
+    );
+    const filmsArray = [...filteredFilms, film];
 
-    if (filmsArray.length > 7){
-      filmsArray.shift()
+    if (filmsArray.length > 7) {
+      filmsArray.shift();
     }
-    setRecentFilms(filmsArray)
-
+    setRecentFilms(filmsArray);
   }
 
   return (
-    
-      <div>
-        <recentFilmsContext.Provider value={{addFilms, recentFilms}}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/movies" element={<AllMovies></AllMovies>} />
-            <Route path="/movie/:id" element={<FilmPage></FilmPage>} />
-            <Route path="/movie/actor/:id" element={<ActorPage></ActorPage>}></Route>
-            <Route path="/reg" element={<RegistrationPage></RegistrationPage>}></Route>
-            <Route path="/auth" element={<AuthorisationPage></AuthorisationPage>}></Route>
-            <Route path="/admin" element={<AdminPage></AdminPage>}>
-              <Route path="/admin/movies" element={<AdminMovies></AdminMovies>}></Route>
-              <Route path="/admin/profiles" element={<AdminProfiles></AdminProfiles>}></Route>
-              <Route path="/admin/profile/:id" element={<AdminProfile></AdminProfile>}></Route>
-              <Route path="/admin/genres" element={<AdminGenres></AdminGenres>}></Route>
-              <Route path="/admin/movie/:id" element={<AdminFilm></AdminFilm>}></Route>
-              <Route path="/admin/movie/:id/comments" element={<AdminComments></AdminComments>}></Route>
-            </Route>
-          </Routes>
-        </BrowserRouter>
+    <div>
+      <UserContextProvider>
+        <recentFilmsContext.Provider value={{ addFilms, recentFilms }}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/movies" element={<AllMovies></AllMovies>} />
+              <Route path="/movie/:id" element={<FilmPage></FilmPage>} />
+              <Route
+                path="/movie/actor/:id"
+                element={<ActorPage></ActorPage>}
+              ></Route>
+              <Route
+                path="/reg"
+                element={<RegistrationPage></RegistrationPage>}
+              ></Route>
+              <Route
+                path="/auth"
+                element={<AuthorisationPage></AuthorisationPage>}
+              ></Route>
+              <Route path="/admin" element={<AdminPage></AdminPage>}>
+                <Route
+                  path="/admin/movies"
+                  element={<AdminMovies></AdminMovies>}
+                ></Route>
+                <Route
+                  path="/admin/profiles"
+                  element={<AdminProfiles></AdminProfiles>}
+                ></Route>
+                <Route
+                  path="/admin/profile/:id"
+                  element={<AdminProfile></AdminProfile>}
+                ></Route>
+                <Route
+                  path="/admin/genres"
+                  element={<AdminGenres></AdminGenres>}
+                ></Route>
+                <Route
+                  path="/admin/movie/:id"
+                  element={<AdminFilm></AdminFilm>}
+                ></Route>
+                <Route
+                  path="/admin/movie/:id/comments"
+                  element={<AdminComments></AdminComments>}
+                ></Route>
+              </Route>
+            </Routes>
+          </BrowserRouter>
         </recentFilmsContext.Provider>
-      </div>
-    
-  )
+      </UserContextProvider>
+    </div>
+  );
 }

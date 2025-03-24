@@ -40,7 +40,7 @@ export function useUserByID(id: number) {
 
     async function deleteComment(id: number){
         try {
-            const response = await fetch(`http://localhost:3001/genres/${id}`, {
+            const response = await fetch(`http://localhost:3001/users/comment/${id}`, {
                 method: "DELETE",
             })
           

@@ -3,6 +3,16 @@ import { useUserByID } from "../../hooks/useUserById";
 import "./AdminProfile.css";
 import { ProgressBar } from "react-loader-spinner";
 import { useState, useRef, useEffect } from "react";
+import * as yup from 'yup';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const userSchema = yup.object().shape({
+  nickname: yup.string().required('Nickname is required'),
+  password: yup.string().min(6, 'Password must be at least 8 characters'),
+  email: yup.string().email('Invalid email').required('Email is required'),
+  age: yup.number().positive('Age must be a positive number').integer('Age must be an integer'),
+});
 
 export function AdminProfile() {
   const { id } = useParams();
@@ -25,7 +35,7 @@ export function AdminProfile() {
     }
   }, [user]);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  function handleFileChange(event: React.ChangeEvent<HTMLInputElement>){
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       const imageUrl = URL.createObjectURL(file);
@@ -33,7 +43,7 @@ export function AdminProfile() {
     }
   };
 
-  const handleUploadClick = () => {
+  function handleUploadClick(){
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
@@ -58,6 +68,15 @@ export function AdminProfile() {
 
   const handleSave = async () => {
     try {
+      const userData = {
+        nickname,
+        password,
+        email,
+        age: Number(age),
+      };
+
+      await userSchema.validate(userData, { abortEarly: false });
+
       let imageUrl = user?.image;
 
       if (fileInputRef.current?.files?.[0]) {
@@ -65,13 +84,8 @@ export function AdminProfile() {
         imageUrl = await uploadImage(file);
       }
 
-      console.log(imageUrl)
-
       const updatedUser = {
-        nickname,
-        password,
-        email,
-        age: Number(age),
+        ...userData,
         image: imageUrl,
       };
 
@@ -89,8 +103,16 @@ export function AdminProfile() {
 
       const data = await response.json();
       console.log("User updated:", data);
+      toast.success("User updated successfully!");
     } catch (error) {
-      console.error("Failed to update user:", error);
+      if (error instanceof yup.ValidationError) {
+        error.inner.forEach((err) => {
+          toast.error(err.message);
+        });
+      } else {
+        console.error("Failed to update user:", error);
+        toast.error("Failed to update user");
+      }
     }
   };
 
@@ -191,6 +213,7 @@ export function AdminProfile() {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }
