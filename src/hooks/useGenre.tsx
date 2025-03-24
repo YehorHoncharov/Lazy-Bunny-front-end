@@ -25,61 +25,68 @@ export function useGenre() {
         fetchGenres()
     }, [])
 
-    async function addGenre(name: string) {
+    async function addGenre(name: string){
         try {
-            setIsLoading(true)
-            const response = await fetch("http://localhost:3001/movies", {
+            const response = await fetch("http://localhost:3001/genres", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify({ name }),
             })
 
+    
             const newGenre = await response.json()
             setGenres((prev) => [...prev, newGenre])
         } catch (error) {
             if (error instanceof Error) {
                 setError(error.message)
             }
-        } finally {
-            setIsLoading(false)
+            console.error(error)
         }
     }
 
-    async function updateGenre(id: number, name: string) {
-        try {
-            setIsLoading(true)
-            const response = await fetch(`http://localhost:3001/movies/${id}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name }),
-            })
 
-            setGenres((prev) =>
-                prev.map((genre) => (genre.id === id ? { ...genre, name } : genre))
-            )
-        } catch (error) {
-            if (error instanceof Error) {
-                setError(error.message)
+    async function updateGenre(id: number, name: string){
+        try {
+            const updatedGenre = {
+              id,
+              name,
             }
-        } finally {
-            setIsLoading(false)
-        }
-    }
+            const response = await fetch(`http://localhost:3001/genres/${id}`, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedGenre),
+              })
+    
+              const data = await response.json()
+              console.log("User updated:", data)
+          
+            } catch (error) {
+                if (error instanceof Error) {
+                    setError(error.message)
+                }
+                console.error(error)
+            }
+          }
 
-    async function deleteGenre(id: number) {
+    async function deleteGenre(id: number){
         try {
-            setIsLoading(true);
-            const response = await fetch(`http://localhost:3001/movies/${id}`, {
+            const response = await fetch(`http://localhost:3001/genres/${id}`, {
                 method: "DELETE",
             })
-
+          
+            const data = await response.json()
+            console.log("Genre updated:", data)
+            
             setGenres((prev) => prev.filter((genre) => genre.id !== id))
         } catch (error) {
             if (error instanceof Error) {
                 setError(error.message)
             }
-        } finally {
-            setIsLoading(false)
+            console.error(error)
         }
     }
 
