@@ -30,7 +30,6 @@ export function FilmDescriptionPhotos({ film }: IFilmGenresProps) {
 
   return(
     <div>
-      return (
         <div key={film.id}>
           <div className="film-textDiv">
             <h1 className="description">Description</h1>
@@ -47,50 +46,33 @@ export function FilmDescriptionPhotos({ film }: IFilmGenresProps) {
   
             <div className="film-photos">
               <div className="film-all">
-                <img id="film-photo" src="/static/img/actorPhoto.avif" alt="" />
-                <p id="top-cast-font">zxc</p>
-              </div>
-
-              <div className="film-all">
-                <img id="film-photo" src="/static/img/actorPhoto.avif" alt="" />
-                <p id="top-cast-font">zxc</p>
-              </div>
-
-              <div className="film-all">
-                <img id="film-photo" src="/static/img/actorPhoto.avif" alt="" />
-                <p id="top-cast-font">zxc</p>
-              </div>
-
-              <div className="film-all">
-                <img id="film-photo" src="/static/img/actorPhoto.avif" alt="" />
-                <p id="top-cast-font">zxc</p>
-              </div>
-
-              <div className="film-all">
-                <img id="film-photo" src="/static/img/actorPhoto.avif" alt="" />
-                <p id="top-cast-font">zxc</p>
-              </div>
-
-              <div className="film-all">
-                <img id="film-photo" src="/static/img/actorPhoto.avif" alt="" />
-                <p id="top-cast-font">zxc</p>
-              </div>
-
-              <div className="film-all">
-                <img id="film-photo" src="/static/img/actorPhoto.avif" alt="" />
-                <p id="top-cast-font">zxc</p>
-              </div>
-
-              <div className="film-all">
-                <img id="film-photo" src="/static/img/actorPhoto.avif" alt="" />
-                <p id="top-cast-font">zxc</p>
+              {film.Actors.map(({ Actor }) => (
+                <div key={Actor.name}>
+                    <img 
+                        src={Actor.image} 
+                        alt=""
+                        style={{ width: 60, height: 60, borderRadius: '50%' }}
+                    />
+                    <div>{Actor.name}</div>
+                </div>
+                ))}
+                </div>
               </div>
             </div>
           </div>
   
             <div className="film-photo">
                 <h1 id="top-cast">Photos</h1>
-    
+                
+                {/* {films.map((filmPhotos) => (
+                <div>
+                    <img 
+                        src={filmPhotos.image} 
+                        alt=""
+                    />
+                </div>
+                ))} */}
+                
                 <div className="film-photos">
                 <img width={453} height={254} src="/static/img/Home-Still.jpg" alt="" />
                 <img width={453} height={254} src="/static/img/aboutPhoto.jpg" alt="" />
@@ -128,10 +110,7 @@ export function FilmDescriptionPhotos({ film }: IFilmGenresProps) {
                 )}
             </div>
         </div>
-      );
-  </div>
-  
-  )
+  );
 
 }
 

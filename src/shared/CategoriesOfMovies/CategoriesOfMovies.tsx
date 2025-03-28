@@ -23,25 +23,20 @@ export function CategoriesOfMovies() {
 
     useEffect(() => {
 
-    const getRecommendedFilms = () => {
-        function checkGenre(genre: IGenre) {
+    function getRecommendedFilms(){
+        function checkGenre(genre: { Genre: IGenre }) {
             return recentFilms.some((recentFilm) =>{
-                const filteredGenres = recentFilm.Genres.some((recentGenre) => {
-                    return recentGenre.name === genre.name
+                const filteredGenres = recentFilm.Genres.some((recentGenre: { Genre: IGenre }) => {
+                    return recentGenre.Genre.name === genre.Genre.name
                 })
                 return filteredGenres
-                // console.log(filteredGenres)
-                // console.log(recentFilm)
                 
-                // if (.id === genre.id)
-                // return recomendedFilm.Genres.includes(genre)
             })
         }   
  
         function someGenres(film: IFilm) {
-            const filterGenre = film.Genres.some((genre) => {
-                const checkedGenres = checkGenre(genre)
-                // console.log(checkedGenres)
+            const filterGenre = film.Genres.some((recentGenre: { Genre: IGenre }) => {
+                const checkedGenres = checkGenre(recentGenre)
                 return checkedGenres
             
             })

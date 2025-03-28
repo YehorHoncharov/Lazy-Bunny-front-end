@@ -40,7 +40,7 @@ export function AuthorisationPage(){
                             maxLength: {value: 100, message: 'This field should be less than 100 symbols'}, })} required/>
                     <p>{formState.errors.password?.message}</p>
                 </div>
-                <button type="submit" >Log In</button>
+                <button className="reg-button" type="submit" >Log In</button>
                 <div className="register">
                     <p>Don't have an account? <a id='Register' href="/reg">  Register</a></p>
                 </div>

@@ -1,18 +1,20 @@
-import { Link } from "react-router-dom"
 import "./FilmMainFrame.css"
-import { IFilm } from "../../hooks/types";
+import { IFilm, IGenre } from "../../hooks/types";
 
 interface IFilmGenresProps {
   film: IFilm;
 }
 
 export function FilmMainFrame({ film }: IFilmGenresProps){
+
     return (
         <div className="filmMainFrame">
+        <img className="mainfarameimg" src="/static/img/bg1.webp" alt="" />
+        {/* <img className="mainfarameimg" src={film.baner} alt="" /> */}
+            <div className="filmdesc">
                 <div className="filmFrame">
-
                     <div className="buttonInfo">
-                        <img src="/static/img/cardPhoto.jpg" alt="" className='movieImg'/>
+                        <img src={film.Img} alt="" className='movieImg'/>
                         <select name="seeMore" id="seeMore">
                             <option value="SeeMore" disabled selected>SeeMore</option>
                         </select>
@@ -27,15 +29,16 @@ export function FilmMainFrame({ film }: IFilmGenresProps){
                             <h1 id="filmYear">{film.Year}</h1>
                         </div>
 
-                        <div className="genresOfFilms">
-                            <Link to={""} className="genre">Wasted</Link>
-                            <Link to={""} className="genre">Thriller</Link>
-                            <Link to={""} className="genre">Comedy</Link>
-                            <Link to={""} className="genre">Action</Link>
-                            <Link to={""} className="genre">Drama</Link>
-                            <Link to={""} className="genre">Thriller</Link>
+                        <div className="genres">
+                            {film.Genres.map((filmGenre: IGenre) => (
+                                <p key={filmGenre.Genre.id} className="genre">
+                                    {filmGenre.Genre.name}
+                                </p>
+                            ))}
                         </div>
+                
                     </div>
+            </div>
         </div>
     )
 }

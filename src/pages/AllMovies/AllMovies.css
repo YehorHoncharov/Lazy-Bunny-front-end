@@ -11,7 +11,7 @@
     display: flex;
     width: 1249px;
     height: 70px;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background-color: #596786;
     opacity: 90%;
@@ -19,7 +19,6 @@
     padding: 12px 12px;
     margin-bottom: 31px;
     gap: 80px;
-    /* margin-bottom: 200px; */
 }
 
 
@@ -90,4 +89,45 @@
     cursor: pointer;
     appearance: none; 
     /* margin-bottom: 15px; */
+}
+
+.selected-genres-container {
+    display: flex;
+    width: 870px;
+    flex-direction: row;
+    border-radius: 5px;
+    font-family: "Inter";
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    padding: 0px 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    gap: 20px;
+    flex-wrap: wrap;
+
+}
+
+.remove-genre-btn{
+    height: 25px;
+    background-color: #5861AD;
+    border-radius: 5px;
+    font-family: "Inter";
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    padding: 0px 10px;
+    cursor: pointer;
+}
+
+.genre-tag {
+    /* background-color: #5861AD; */
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    padding-left: 5px;
+
 }

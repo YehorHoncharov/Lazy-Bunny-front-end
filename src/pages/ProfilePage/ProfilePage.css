@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+.profilePage{
+    
+    background-color: rgb(	57, 62, 83, 0.7);
+    background-image: url("../../../public/static/img/Frame70.png");
+    background-size: cover;
+    background-repeat: no-repeat; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: "Inter", cursive;
+    font-weight: 500;
+    width: 100%;
+    overflow: hidden;
+}
+
+.profileUsername{
+    font-size: 32px;
+    color: white;
+}
+.profileAge{
+    font-size: 25px;
+    color: white;
+}
+.infoWithoutCards{
+    display: flex;
+    flex-direction: row;
+    gap: 80px;
+}
+.profileInfo{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.userInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.profileTitle{
+    font-size: 54px;
+    color: white;
+    font-weight: 700;
+    font-family: "Comic Sans MS", cursive;
+}

@@ -53,7 +53,7 @@ export function RegistrationPage(){
                             maxLength: {value: 100, message: 'This field should be less than 100 symbols'}, })}/>
                     </div>
                     <p>{formState.errors.password?.message}</p>
-                    <button type="submit">Create your account</button>
+                    <button className="reg-button" type="submit">Create your account</button>
                     <div className="register">
                         <p>Do you have an account? <a id='SignIn' href="/auth">  Sign in</a></p>
                     </div>

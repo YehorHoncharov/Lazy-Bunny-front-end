@@ -15,8 +15,9 @@ import { AdminProfile } from "../AdminProfile/AdminProfile";
 import { AdminComments } from "../AdminComments/AdminComments";
 import { AdminFilm } from "../AdminFilm/AdminFilm";
 import { UserContextProvider } from "../../context/userContext";
-
+import {ProfilePage } from "../../pages/ProfilePage/ProfilePage";
 import "./MovieApp.css";
+import { ShowPage } from "../../pages/ShowPage/ShowPage";
 
 interface IRecentFilms {
   addFilms: (film: IFilm) => void;
@@ -32,7 +33,8 @@ const initialValue: IRecentFilms = {
 export const recentFilmsContext = createContext<IRecentFilms>(initialValue);
 
 export function MovieApp() {
-  const [recentFilms, setRecentFilms] = useState<IFilm[]>([]);
+  
+  const [recentFilms, setRecentFilms] = useState<IFilm[]>([])
 
   function addFilms(film: IFilm) {
     const filteredFilms = recentFilms.filter(
@@ -53,6 +55,7 @@ export function MovieApp() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<MainPage />} />
+              <Route path="/shows" element={<ShowPage />} />
               <Route path="/movies" element={<AllMovies></AllMovies>} />
               <Route path="/movie/:id" element={<FilmPage></FilmPage>} />
               <Route
@@ -67,6 +70,11 @@ export function MovieApp() {
                 path="/auth"
                 element={<AuthorisationPage></AuthorisationPage>}
               ></Route>
+              <Route
+                path="/profile"
+                element={<ProfilePage></ProfilePage>}
+              ></Route>
+              
               <Route path="/admin" element={<AdminPage></AdminPage>}>
                 <Route
                   path="/admin/movies"

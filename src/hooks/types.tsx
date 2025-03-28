@@ -36,12 +36,14 @@ export interface IActor{
     height: number,
     career: string,
     totalMovies: number,
-    image: string
+    image: string,
+    Actor: IActor,
 }
 
-export interface IGenre{
-    id: number,
-    name: string,
+export interface IGenre {
+    id: number;
+    name: string;
+    Genre: IGenre;
 }
 
 export interface IUser{

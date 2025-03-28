@@ -1,4 +1,3 @@
-
 .RegistrationPage{
   background-image: url("../../../public/static/img/marvel3.png");
   background-size: cover; 
@@ -37,7 +36,7 @@ h2 {
 }
 .input-field {
   position: relative;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #ffffff;
   margin: 15px 0;
 }
 .input-field label {
@@ -83,13 +82,13 @@ h2 {
   margin-left: 8px;
 }
 .wrapper a {
-  color: #efefef;
+  color: #ffffff;
   text-decoration: none;
 }
 .wrapper a:hover {
   text-decoration: underline;
 }
-button {
+.reg-button {
   background: #fff;
   color: #000;
   font-weight: 600;
