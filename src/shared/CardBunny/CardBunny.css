@@ -41,11 +41,17 @@
 
 .rating{
     display: flex;
+    color: black;
     flex-direction: row;
     padding: 6px;
     font-weight: 700;
     align-items: center;
+    margin-left: 7px;
     gap: 7px;
+}
+
+.ratingText{
+    color: #DEA727;
 }
 
 .buttonTrailer{

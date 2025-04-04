@@ -50,8 +50,8 @@
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
-    flex-wrap: wrap;
     margin: 30px;
+    gap: 20px;
 }
 
 .film-all{
@@ -59,13 +59,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-left: 30px;
+    margin-left: 50px;
 }
 
 .film-photos{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content:center;
+    gap: 50px;
+}
+
+.top-cast{
+    display: flex;
     justify-content: center;
-    gap: 90px;
+    flex-direction: column;
+    align-items: center;
 }

@@ -69,7 +69,7 @@ export function Search() {
     );
   }
 
-  if (error) return <div className="error-message">Error loading films: {error}</div>;
+  if (error) return <div className="no-results">Error loading films: {error}</div>;
 
   return (
     <div className="search" id="search-section">

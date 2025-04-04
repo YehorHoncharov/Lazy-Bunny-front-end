@@ -1,0 +1,79 @@
+
+.mood-div{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+    min-height: 900px;
+}
+
+.profileTitle {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.mood-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.mood-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 15px;
+    transition: all 0.3s ease;
+    width: 170px;
+}
+
+.mood-button:hover {
+    transform: scale(1.05);
+    border-color: #aaa;
+}
+
+.mood-button.active {
+    border-color: #4CAF50;
+    background-color: #f0fff0;
+}
+
+.mood-button img {
+    width: 130px;
+    height: 170px;
+    margin-bottom: 10px;
+}
+
+.films-container {
+    height: 100vh;
+    margin: 30px auto;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.films-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.films-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.mood-name{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #4CAF50;
+
+}

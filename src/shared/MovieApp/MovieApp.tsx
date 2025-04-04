@@ -18,6 +18,7 @@ import { UserContextProvider } from "../../context/userContext";
 import {ProfilePage } from "../../pages/ProfilePage/ProfilePage";
 import "./MovieApp.css";
 import { ShowPage } from "../../pages/ShowPage/ShowPage";
+import { MoodPage } from "../../pages/MoodPage/MoodPage";
 
 interface IRecentFilms {
   addFilms: (film: IFilm) => void;
@@ -56,6 +57,7 @@ export function MovieApp() {
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/shows" element={<ShowPage />} />
+              <Route path="/mood" element={<MoodPage />} />
               <Route path="/movies" element={<AllMovies></AllMovies>} />
               <Route path="/movie/:id" element={<FilmPage></FilmPage>} />
               <Route

@@ -27,6 +27,14 @@ export function ProfilePage() {
     }
   }, [user]);
 
+  // if (!user || !user.favouriteFilms) {
+  //   return <p>Загрузка данных...</p>;
+  // }
+
+  // if (user.favouriteFilms.length === 0) {
+  //   return <p>У вас пока нет избранных фильмов</p>;
+  // }
+
   function handleFileChange(event: React.ChangeEvent<HTMLInputElement>){
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
@@ -137,6 +145,14 @@ export function ProfilePage() {
             
             <div className="category-recent">
                 {recentFilms.map((film, index) => {
+                    if (index < 5){
+                        return <Card film={film}></Card>
+                    }
+                    return null
+                })}
+            </div>
+            <div className="category-recent">
+                {user.favouriteMovies.map((film, index) => {
                     if (index < 5){
                         return <Card film={film}></Card>
                     }

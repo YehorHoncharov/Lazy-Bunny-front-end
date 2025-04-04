@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 import "./MainFrame.css"
 
 export function MainFrame(){
@@ -16,7 +18,9 @@ export function MainFrame(){
                 <h3 id="textFrame">relax and enjoy!</h3>
                 </div>
 
-                <button id="buttonStart">Start picking!</button>
+                <Link to="/movies">
+                    <button id="buttonStart">Start picking!</button>
+                </Link>
             </div>
         </div>
     )

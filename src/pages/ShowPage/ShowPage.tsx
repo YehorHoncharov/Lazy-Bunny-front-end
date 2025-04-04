@@ -15,7 +15,7 @@ export function ShowPage() {
         if (!films) return [] 
         
         return films.filter(film => 
-            film.Genres.some(genre => genre.id === 4)
+            film.Genres.some(genre => genre.id === 50)
     )} 
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,7 +47,7 @@ export function ShowPage() {
         <div className='contener'>
             <Header />
             <div className="showpage-div">
-                <h1 className="profileTitle">Shows</h1>
+                <h1 className="profileTitle" id='show-title'>Shows</h1>
 
                 <div className="admin-search">
                     <div className="search-input-wrapper">

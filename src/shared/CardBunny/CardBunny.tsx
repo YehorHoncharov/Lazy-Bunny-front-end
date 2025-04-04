@@ -16,9 +16,23 @@ export function Card(props: ICardFilm) {
     const { user, updateUser } = useUserContext()
     
     const handleSaveClick = async (e: React.MouseEvent) => {
-        e.preventDefault() 
-        e.stopPropagation()
-        
+        e.preventDefault();
+        e.stopPropagation();
+    
+        if (user) {
+            const favouriteMovies = Array.isArray(user.favouriteMovies) ? user.favouriteMovies : [];
+            console.log(user.favouriteMovies)
+            const updatedFavouriteMovies = [...favouriteMovies, film]
+    
+            const updatedUser = {
+                ...user,
+                favouriteMovies: updatedFavouriteMovies,
+            };
+            console.log(updatedUser)
+            updateUser(updatedUser)
+        }
+
+        console.log(user)
         try {
             if (user){
                 const response = await fetch(`http://localhost:3001/users/${user.id}`, {
@@ -26,7 +40,7 @@ export function Card(props: ICardFilm) {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ filmId: film.id })
+                    body: JSON.stringify(user)
                 })
     
                 if (!response.ok) {
@@ -47,6 +61,33 @@ export function Card(props: ICardFilm) {
             }
         }
     }
+    
+    function handleTrailer() {
+        const trailerUrl = film.Url;
+
+        if (trailerUrl) {
+        console.log("Opening trailer URL:", trailerUrl);
+        try {
+            const newWindow = window.open(
+            trailerUrl,
+            "_blank",
+            "noopener,noreferrer"
+            );
+
+            if (
+            !newWindow ||
+            newWindow.closed ||
+            typeof newWindow.closed === "undefined"
+            ) {
+            console.error("Popup was blocked by browser");
+            }
+        } catch (error) {
+            window.open("https://www.youtube.com", "_blank");
+        }
+        } else {
+        window.open("https://www.youtube.com", "_blank");
+        }
+    }
 
     return (
         <Link to={`/movie/${film.id}`} onClick={() => { addFilms(film) }}>
@@ -62,12 +103,7 @@ export function Card(props: ICardFilm) {
                 </div>
 
                 <div className='rating'>
-                    <img src="/static/img/FullStar.png" alt="" />
-                    <img src="/static/img/FullStar.png" alt="" />
-                    <img src="/static/img/FullStar.png" alt="" />
-                    <img src="/static/img/FullStar.png" alt="" />
-                    <img src="/static/img/HalfStar.png" alt="" />
-                    <p>{film.Rating}/10</p>
+                    <p>Rating: <span className='ratingText'>{film.Rating}/10</span></p>
                 </div>
 
                 <div>
@@ -79,7 +115,7 @@ export function Card(props: ICardFilm) {
                 </div>
                 
                 <div className='buttonAndMood'>
-                    <button className='buttonTrailer'>
+                    <button className='buttonTrailer' onClick={handleTrailer}>
                         <img src="/static/img/triangleCardBunny.png" alt="" /> 
                         <p>Trailer</p>
                     </button>

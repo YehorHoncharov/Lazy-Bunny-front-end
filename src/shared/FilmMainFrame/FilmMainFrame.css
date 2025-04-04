@@ -24,11 +24,19 @@
 .movieInformationBlock{
     display: flex;
     justify-content: space-between;
+    background-color: rgba(51, 50, 50, 0.8);
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5),0 0 30px rgba(100, 100, 255, 0.3);
+    transition: box-shadow 0.3s ease;
 }
 
 #filmRating{
     font-size: 24px;
-    color: #A7A4A4;
+    color: #ffffff;
     font-family: "Inter", cursive;
     font-weight: bold;
     display: inline;
@@ -122,7 +130,7 @@
     font-weight: bold;
     display: inline-block;
     padding: 5px 10px;
-    border: 2px solid #fff;
+    border: 2px solid #000000;
     border-radius: 50px;
     background-color: transparent;
     color: #fff;

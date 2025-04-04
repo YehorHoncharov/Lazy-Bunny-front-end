@@ -34,7 +34,7 @@ export function AuthorisationPage(){
                     <p>{formState.errors.email?.message}</p>
                 </div>
                 <div className="input-field">
-                    <input type="password" placeholder="Enter your password"{...registerUser('password', {
+                    <input type="password" className='input-field' placeholder="Enter your password"{...registerUser('password', {
                             required: {value: true, message: 'Field is required'}, 
                             minLength: {value: 4, message: 'This field should be more than 4 symbols'}, 
                             maxLength: {value: 100, message: 'This field should be less than 100 symbols'}, })} required/>

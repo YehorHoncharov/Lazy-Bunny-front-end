@@ -113,3 +113,7 @@ button:hover {
 #SignIn{
     color: rgb(0, 113, 250);
 }
+
+.input-field::placeholder{
+  color: #ffffff;
+}

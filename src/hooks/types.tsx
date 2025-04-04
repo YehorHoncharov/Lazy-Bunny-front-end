@@ -18,6 +18,10 @@ export interface IFilm{
     Actors: IActor[],
     Img: string,
     Rating: number,
+    Mood: string,
+    Baner: string,
+    Url: string,
+    Moments: IMoment[]
     Comments: IComment[]
 }
 export interface IComment{
@@ -26,6 +30,11 @@ export interface IComment{
     text: string,
     children?: ReactNode
     commentId: number
+}
+
+export interface IMoment{
+    id: number,
+    url: string,
 }
 
 export interface IActor{
@@ -55,6 +64,7 @@ export interface IUser{
     role: string,
     image?: string,
     comments: IComment[]
+    favouriteMovies: IFilm[]
 }
 
 

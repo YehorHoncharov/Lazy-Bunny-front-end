@@ -29,7 +29,7 @@ export function Header() {
       <a href="/shows" className="text">
         Shows
       </a>
-      <Link to={"/movie/actor/1"} className="text">
+      <Link to={"/mood"} className="text">
         Mood
       </Link>
       <button onClick={handleSearchClick} className="button-text">
