@@ -14,12 +14,12 @@ import "./FilmPage.css";
 export function FilmPage() {
     
   const {id} = useParams()
-  const {film, isLoading} = useFilmByID(Number(id))
+  const {film} = useFilmByID(Number(id))
   
   const [filmState, setFilmState] = useState<IFilm>()
   useEffect(() => {
-    if (film){
-      setFilmState(film)
+    if (film && film.length > 0){
+      setFilmState(film[0])
     }
   }, [film])
   return(

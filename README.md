@@ -38,10 +38,10 @@ Lazy Bunny – це інтерактивний веб-сайт для пошук
 
 ## Структура проекту
 
- mermaid
+ ```mermaid
 
     graph TD;
-   root[Проект] --> public[public/]
+    root[Проект] --> public[public/]
     root --> src[src/]
     root --> env[.env]
     root --> gitignore[.gitignore]
@@ -56,7 +56,8 @@ Lazy Bunny – це інтерактивний веб-сайт для пошук
     src --> index.tsx
     public[public/] --> img[img/]
     img[img/] --> index.html
-
+    
+```
 
 [Посилання на FigJam-схему](https://www.figma.com/board/54Dk4yuXwkKUK6LWMj9ubF/LazyBunny-FrontEnd-Scheme?node-id=0-1&t=BauMz8cwub6znSef-1)
 

@@ -15,7 +15,7 @@ export function ShowPage() {
         if (!films) return [] 
         
         return films.filter(film => 
-            film.Genres.some(genre => genre.id === 50)
+            film.Genres.some(genre => genre.id === 5)
     )} 
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

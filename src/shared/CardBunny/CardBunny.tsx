@@ -5,9 +5,9 @@ import { useContext } from 'react'
 import { recentFilmsContext } from '../MovieApp/MovieApp'
 import { useUserContext } from '../../context/userContext'
 
-
 interface ICardFilm {
-    film: IFilm
+    film: IFilm,
+    onUpdate?: () => void
 }
 
 export function Card(props: ICardFilm) {
@@ -16,90 +16,74 @@ export function Card(props: ICardFilm) {
     const { user, updateUser } = useUserContext()
     
     const handleSaveClick = async (e: React.MouseEvent) => {
-        e.preventDefault();
-        e.stopPropagation();
-    
-        if (user) {
-            const favouriteMovies = Array.isArray(user.favouriteMovies) ? user.favouriteMovies : [];
-            console.log(user.favouriteMovies)
-            const updatedFavouriteMovies = [...favouriteMovies, film]
-    
-            const updatedUser = {
-                ...user,
-                favouriteMovies: updatedFavouriteMovies,
-            };
-            console.log(updatedUser)
-            updateUser(updatedUser)
+        e.preventDefault()
+        e.stopPropagation()
+
+        if (!user) {
+            console.error("Користувач не авторизований")
+            return
         }
 
-        console.log(user)
         try {
-            if (user){
-                const response = await fetch(`http://localhost:3001/users/${user.id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(user)
-                })
-    
-                if (!response.ok) {
-                    throw new Error("Failed to upload");
-                  }
-                
+            const response = await fetch(`http://localhost:3001/users/fav/${user.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({userId: user.id, filmId: film.id})
+            })
+
+            if (!response.ok) {
+                throw new Error("Не вдалося оновити улюблені фільми")
+            }
             
-                const updatedUser = await response.json()
-                updateUser(updatedUser) 
-            }   
+            const updatedUser = await response.json()
+            updateUser(updatedUser)
             
+            const favouriteMovies = Array.isArray(user.favouriteMovies) ? user.favouriteMovies : []
+            const updatedFavouriteMovies = [...favouriteMovies, film]
+            updateUser({
+                ...user,
+                favouriteMovies: updatedFavouriteMovies,
+            })
             
         } catch (error) {
-            if (error instanceof Error) {
-                console.error(error.message);
-            } else {
-                console.error('An unknown error occurred:', error);
-            }
+            console.error('Помилка при збереженні фільму:', error)
         }
     }
     
-    function handleTrailer() {
-        const trailerUrl = film.Url;
-
-        if (trailerUrl) {
-        console.log("Opening trailer URL:", trailerUrl);
+    const handleTrailer = (e: React.MouseEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+        
+        const trailerUrl = film.Url || "https://www.youtube.com"
+        console.log("Opening trailer URL:", trailerUrl)
+        
         try {
-            const newWindow = window.open(
-            trailerUrl,
-            "_blank",
-            "noopener,noreferrer"
-            );
-
-            if (
-            !newWindow ||
-            newWindow.closed ||
-            typeof newWindow.closed === "undefined"
-            ) {
-            console.error("Popup was blocked by browser");
+            const newWindow = window.open(trailerUrl, "_blank", "noopener,noreferrer")
+            if (!newWindow || newWindow.closed) {
+                console.error("Popup was blocked by browser")
             }
         } catch (error) {
-            window.open("https://www.youtube.com", "_blank");
+            window.open("https://www.youtube.com", "_blank")
         }
-        } else {
-        window.open("https://www.youtube.com", "_blank");
-        }
+    }
+
+    const handleCardClick = () => {
+        addFilms(film)
     }
 
     return (
-        <Link to={`/movie/${film.id}`} onClick={() => { addFilms(film) }}>
+        <Link to={`/movie/${film.id}`} onClick={handleCardClick} className="card-link">
             <div className="card">
                 <div>
                     <button 
                         className="saveButton" 
                         onClick={handleSaveClick}
                     >
-                        <img src="/static/img/SaveCard.png" alt="" />
+                        <img src="/static/img/SaveCard.png" alt="Save" />
                     </button>
-                    <img src={film.Img} alt="" className='movieImg'/>
+                    <img src={film.Img} alt={film.Name} className='movieImg'/>
                 </div>
 
                 <div className='rating'>
@@ -116,10 +100,9 @@ export function Card(props: ICardFilm) {
                 
                 <div className='buttonAndMood'>
                     <button className='buttonTrailer' onClick={handleTrailer}>
-                        <img src="/static/img/triangleCardBunny.png" alt="" /> 
+                        <img src="/static/img/triangleCardBunny.png" alt="Trailer" /> 
                         <p>Trailer</p>
                     </button>
-                    <img src="" alt="" />
                 </div>
             </div>
         </Link>

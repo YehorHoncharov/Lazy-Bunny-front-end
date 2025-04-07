@@ -43,10 +43,10 @@ export function Footer(){
                 </div>
                 <div className='div2'>
                     <div className='footerNames'>
-                        <a className='namefont' href="/">Bohdanchik</a>
-                        <a className='namefont' href="/">Sema</a>
-                        <a className='namefont' href="/">Egorushka</a>
-                        <a className='namefont' href="/">Mirosya</a>
+                        <a className='namefont' href="https://github.com/BohdanRubanov">Bohdanchik</a>
+                        <a className='namefont' href="https://github.com/arman455">Sema</a>
+                        <a className='namefont' href="https://github.com/YehorHoncharov">Egorushka</a>
+                        <a className='namefont' href="https://github.com/AsolaRim">Mirosya</a>
                     </div>
                     <div className='footerTeam'>
                         <a className='namefont' href="/">Created by Team1</a>

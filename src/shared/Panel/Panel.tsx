@@ -8,17 +8,14 @@ export function Panel(){
             <h1 style={{fontSize: 48}}>Admin Panel</h1>
             <button className="panel-button">Files</button>
             <button className="panel-button">Add Film</button>
+            <Link to={"/admin/movie/create"}>
+                    <p style={{fontSize: 24}}>Create Film</p>
+                </Link>
             <div className="panel-content">
                 <h3 style={{fontSize: 32}}>Content manager</h3>
                 <hr style={{width: "100%"}} />
                 <Link to={"/admin/movies"}>
                     <p style={{fontSize: 24}}>Movies</p>
-                </Link>
-                <Link to={"/admin/shows"}>
-                    <p style={{fontSize: 24}}>Shows</p>
-                </Link>
-                <Link to={"/admin/mood"}>
-                    <p style={{fontSize: 24}}>Mood</p>
                 </Link>
                 <Link to={"/admin/genres"}>
                     <p style={{fontSize: 24}}>Genres</p>
@@ -29,21 +26,6 @@ export function Panel(){
                 <hr style={{width: "100%"}} />
                 <Link to={"/admin/profiles"}>
                     <p style={{fontSize: 24}}>Profiles</p>
-                </Link>
-                <Link to={"/admin/moviestowatchlater"}>
-                    <p style={{fontSize: 24}}>Movies to watch later</p>
-                </Link>
-                <Link to={"/admin/mood"}>
-                    <p style={{fontSize: 24}}>Mood</p>
-                </Link>
-                <Link to={"/admin/moviescommentedon"}>
-                    <p style={{fontSize: 24}}>Movies commented on</p>
-                </Link>
-                <Link to={"/admin/comments"}>
-                    <p style={{fontSize: 24}}>Comments</p>
-                </Link>
-                <Link to={"/admin/recentlymovies"}>
-                    <p style={{fontSize: 24}}>Recently movies</p>
                 </Link>
             </div>
         </div>

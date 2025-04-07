@@ -21,9 +21,33 @@ export interface IFilm{
     Mood: string,
     Baner: string,
     Url: string,
+    Views: number,
+    LastEdit: string,
     Moments: IMoment[]
     Comments: IComment[]
 }
+
+export interface ICreateFilm{
+        Name: string;
+        ReleaseDate: string;
+        Year: number;
+        Genres: string[];
+        Country: string;
+        Director: string;
+        Duration: string;
+        Screenwriter: string;
+        Description: string;
+        Language: string;
+        FilmCompany: string;
+        Actors: string[];
+        Img: string;
+        Rating: number;
+        Mood: string;
+        Baner: string;
+        Url: string;
+        Moments: string[];
+}
+
 export interface IComment{
     id: number
     author: IUser,

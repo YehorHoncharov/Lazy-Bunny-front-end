@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import { IComment, IFilm } from './types'
+import { IFilm } from './types'
 
 
 export function useFilmByID(id: number) {
-    const [film, setFilm] = useState<IFilm>()
+    const [film, setFilm] = useState<IFilm[]>([])
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<string>()
-    const [comments, setComments] = useState<IComment[]>([])
+    // const [comments, setComments] = useState<IComment[]>([])
 
     useEffect(() => {
         async function getFilm() {
@@ -34,13 +34,6 @@ export function useFilmByID(id: number) {
         getFilm()
         
     }, [id])
-
     
-    
-
-    
-    return {film: film, isLoading: isLoading, error: error
-    }
-
-    
+    return {film: film, isLoading: isLoading, error: error}
 }

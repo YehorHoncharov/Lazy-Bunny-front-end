@@ -1,4 +1,3 @@
-
 import { Outlet } from "react-router-dom";
 import { AdminFrame } from "../../shared/AdminFarme/AdminFrame";
 import { Footer } from "../../shared/Footer/Footer";

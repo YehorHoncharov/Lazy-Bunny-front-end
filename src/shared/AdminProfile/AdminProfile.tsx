@@ -1,15 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useUserByID } from "../../hooks/useUserById";
-import "./AdminProfile.css";
 import { ProgressBar } from "react-loader-spinner";
 import { useState, useRef, useEffect } from "react";
 import * as yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import "./AdminProfile.css";
+
 const userSchema = yup.object().shape({
   nickname: yup.string().required('Nickname is required'),
-  password: yup.string().min(6, 'Password must be at least 8 characters'),
+  password: yup.string().min(6, 'Password must be at least 6 characters'),
   email: yup.string().email('Invalid email').required('Email is required'),
   age: yup.number().positive('Age must be a positive number').integer('Age must be an integer'),
 });
@@ -35,74 +36,52 @@ export function AdminProfile() {
     }
   }, [user]);
 
-  function handleFileChange(event: React.ChangeEvent<HTMLInputElement>){
+  function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       const imageUrl = URL.createObjectURL(file);
       setSelectedImage(imageUrl);
     }
-  };
+  }
 
-  function handleUploadClick(){
+  function handleUploadClick() {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
-  };
-
-  async function uploadImage(file: File): Promise<string>{
-    const formData = new FormData();
-    formData.append("image", file);
-  
-    const response = await fetch(`http://localhost:3001/users/${id}`, {
-      method: "POST",
-      body: formData,
-    });
-  
-    if (!response.ok) {
-      throw new Error("Failed to upload image");
-    }
-  
-    const data = await response.json();
-    return data.imageUrl;
-  };
+  }
 
   const handleSave = async () => {
     try {
       const userData = {
         nickname,
-        password,
+        password: password || undefined,
         email,
-        age: Number(age),
+        age: age ? Number(age) : undefined,
       };
 
       await userSchema.validate(userData, { abortEarly: false });
 
-      let imageUrl = user?.image;
+      const formData = new FormData();
+      formData.append("nickname", nickname);
+      if (password) formData.append("password", password);
+      formData.append("email", email);
+      if (age) formData.append("age", age);
 
       if (fileInputRef.current?.files?.[0]) {
-        const file = fileInputRef.current.files[0];
-        imageUrl = await uploadImage(file);
+        formData.append("image", fileInputRef.current.files[0]);
+      } else if (user?.image) {
+        formData.append("image", user.image);
       }
-
-      const updatedUser = {
-        ...userData,
-        image: imageUrl,
-      };
 
       const response = await fetch(`http://localhost:3001/users/${id}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedUser),
+        body: formData,
       });
 
       if (!response.ok) {
         throw new Error("Failed to update user");
       }
 
-      const data = await response.json();
-      console.log("User updated:", data);
       toast.success("User updated successfully!");
     } catch (error) {
       if (error instanceof yup.ValidationError) {
@@ -173,7 +152,7 @@ export function AdminProfile() {
               type="text"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
-              placeholder={user.nickname}
+              placeholder={user.nickname || "Enter nickname"}
             />
           </div>
           <div className="info-div">
@@ -183,7 +162,7 @@ export function AdminProfile() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter a new password"
+              placeholder="Enter new password (min 6 characters)"
             />
           </div>
           <div className="info-div">
@@ -193,18 +172,18 @@ export function AdminProfile() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder={user.email}
+              placeholder={user.email || "Enter email"}
             />
           </div>
-          <div id="age-text" className="info-div">
+          <div className="info-div">
             <p className="profile-text">Age:</p>
             <input
               className="profile-input"
-              id="age"
-              type="text"
+              type="number"
               value={age}
               onChange={(e) => setAge(e.target.value)}
-              placeholder={user.age?.toString()}
+              placeholder={user.age?.toString() || "Enter age"}
+              min="1"
             />
           </div>
 
@@ -213,7 +192,7 @@ export function AdminProfile() {
           </button>
         </div>
       </div>
-      <ToastContainer />
+      <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );
 }
