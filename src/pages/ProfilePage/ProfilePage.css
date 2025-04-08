@@ -15,11 +15,11 @@
     overflow: hidden;
 }
 
-.profileUsername{
+.profile-username{
     font-size: 32px;
     color: white;
 }
-.profileAge{
+.profile-age{
     font-size: 25px;
     color: white;
 }

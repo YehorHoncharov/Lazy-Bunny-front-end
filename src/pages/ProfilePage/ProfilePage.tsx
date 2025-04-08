@@ -169,13 +169,13 @@ export function ProfilePage() {
           <div className="userInfo">
             <p className="profile-username">Username: {user.nickname}</p>
             <p className="profile-age">Age: {user.age || 'Not specified'}</p>
-            <button 
+            {/* <button 
               className="panel-button" 
               onClick={handleSave}
               disabled={isSaving}
             >
               {isSaving ? "Saving..." : "Save Changes"}
-            </button>
+            </button> */}
           </div>
         </div>
         
