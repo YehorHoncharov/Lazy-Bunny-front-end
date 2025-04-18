@@ -62,6 +62,7 @@ export interface IMoment{
 }
 
 export interface IActor{
+    id: number,
     name: string,
     surname?: string,
     dateOfBirth: number,

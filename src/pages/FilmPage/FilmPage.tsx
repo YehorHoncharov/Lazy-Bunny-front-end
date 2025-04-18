@@ -5,8 +5,6 @@ import { FilmDescriptionPhotos } from "../../shared/FilmDescriptionPhotos/FilmDe
 import { FilmMainFrame } from "../../shared/FilmMainFrame/FilmMainFrame";
 import { useParams } from "react-router-dom";
 import { useFilmByID } from "../../hooks/useFilmByID";
-import { useEffect, useState } from "react";
-import { IFilm } from "../../hooks/types";
 import { ProgressBar } from "react-loader-spinner" 
 
 import "./FilmPage.css";
@@ -16,15 +14,10 @@ export function FilmPage() {
   const {id} = useParams()
   const {film} = useFilmByID(Number(id))
   
-  const [filmState, setFilmState] = useState<IFilm>()
-  useEffect(() => {
-    if (film && film.length > 0){
-      setFilmState(film[0])
-    }
-  }, [film])
+ 
   return(
     <div>
-        {!filmState? <div> Loading Film.. <br />           
+        {!film? <div> Loading Film.. <br />           
           <ProgressBar
                 visible={true}
                 height="80"
@@ -39,9 +32,9 @@ export function FilmPage() {
         
         <div className="filmPage">
         <Header></Header>
-        <FilmMainFrame film={filmState}></FilmMainFrame>
-        <FilmDescriptionPhotos film={filmState} ></FilmDescriptionPhotos>
-        <FilmComments film={filmState} ></FilmComments>
+        <FilmMainFrame  film={film}></FilmMainFrame>
+        <FilmDescriptionPhotos film={film} ></FilmDescriptionPhotos>
+        <FilmComments film={film} ></FilmComments>
         <Footer></Footer>
     </div>}
 

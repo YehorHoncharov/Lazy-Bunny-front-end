@@ -3,7 +3,7 @@ import { IFilm } from './types'
 
 
 export function useFilmByID(id: number) {
-    const [film, setFilm] = useState<IFilm[]>([])
+    const [film, setFilm] = useState<IFilm>()
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<string>()
     // const [comments, setComments] = useState<IComment[]>([])

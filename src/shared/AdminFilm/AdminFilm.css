@@ -1,0 +1,156 @@
+.adminFilmContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: #989898;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .adminFilmHeader {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #c0bebe;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+  }
+  
+  /* .adminFilmHeader::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff4d4d, #f9cb28);
+  } */
+  
+  .createFilmForm {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .inputGroup {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  .inputGroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .createFilminput {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    color: #333;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  
+  .createFilminput:hover {
+    border-color: #bbb;
+  }
+  
+  .createFilminput:focus {
+    outline: none;
+    border-color: #f9cb28;
+    box-shadow: 0 0 0 3px rgba(249, 203, 40, 0.2);
+  }
+  
+  .createFilminput::placeholder {
+    color: #999;
+  }
+  
+  textarea.createFilminput {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .createButton {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #ff4d4d, #f9cb28);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+  }
+  
+  .createButton:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(249, 203, 40, 0.3);
+  }
+  
+  .createButton:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  .createButton:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .errorMessage {
+    grid-column: 1 / -1;
+    color: #d32f2f;
+    background: rgba(211, 47, 47, 0.1);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    border: 1px solid rgba(211, 47, 47, 0.2);
+  }
+  
+  .loadingPulse {
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+  }
+  
+  @media (max-width: 768px) {
+    .adminFilmContainer {
+      padding: 1rem;
+    }
+    
+    .createFilmForm {
+      grid-template-columns: 1fr;
+      padding: 1.5rem;
+    }
+    
+    .adminFilmHeader {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .createFilminput {
+      padding: 0.7rem;
+    }
+    
+    .createButton {
+      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+    }
+  }

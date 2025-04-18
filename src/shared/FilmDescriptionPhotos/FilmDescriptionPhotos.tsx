@@ -5,6 +5,7 @@ import { ProgressBar } from "react-loader-spinner";
 import { Card } from "../CardBunny/CardBunny";
 
 import "./FilmDescriptionPhotos.css";
+import { Link } from "react-router-dom";
 
 interface IFilmGenresProps {
   film: IFilm;
@@ -56,11 +57,14 @@ export function FilmDescriptionPhotos({ film }: IFilmGenresProps) {
           <div className="film-photos">
             {film.Actors.map(({ Actor }) => (
               <div className="top-cast">
+                <Link to={`/movie/actor/${Actor.id}`}>
                 <img
                   src={Actor.image}
                   alt=""
                   style={{ width: 155, height: 200, borderRadius: 2 }}
                 />
+                </Link>
+                
                 <div id="top-cast-font">{Actor.name}</div>
               </div>
             ))}

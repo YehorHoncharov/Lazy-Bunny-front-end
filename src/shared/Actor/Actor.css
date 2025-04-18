@@ -89,3 +89,12 @@
     margin-top: 40px;
     text-decoration: underline;
 }
+
+.actor-movies-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 30px;
+    gap: 30px;
+    flex-wrap: wrap;
+}
