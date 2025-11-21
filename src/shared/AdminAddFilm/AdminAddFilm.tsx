@@ -9,14 +9,11 @@
 // import { useParams } from "react-router-dom";
 // import { Header } from "../Header/Header";
 
-
 // export function AdminAddFilm(){
 //    const { id } = useParams();
 //   const { film, isLoading, error, addFilm } = useFilmByID(Number(id));
 //   const [newFilm, setNewFilm] = useState("");
 //   const [editFilms, setEditFilms] = useState<Record<number, string>>({});
-
-
 
 //   // const filmSchema = yup.object().shape({
 //   //   name: yup.string().required("Это поле обязательно").min(3, "Название должно содержать минимум 3 символа"),
@@ -39,32 +36,30 @@
 //   //     name: yup.string().required("Имя актера обязательно"),
 //   //     surname: yup.string().required("Фамилия актера обязательна"),
 
-
 //   // });
 
 //   const handleSave = async () => {
 //       try {
 //         const filmData = { film };
-  
+
 //         // await filmSchema.validate(filmData, { abortEarly: false });
-  
-  
+
 //         const updatedFilm = {
 //           ...filmData
 //         };
-  
-//         const response = await fetch(`http://localhost:3001/movies`, {
+
+//         const response = await fetch(`http://localhost:3000/movies`, {
 //           method: "PUT",
 //           headers: {
 //             "Content-Type": "application/json",
 //           },
 //           body: JSON.stringify(updatedFilm),
 //         });
-  
+
 //         if (!response.ok) {
 //           throw new Error("Failed to update user");
 //         }
-  
+
 //         const data = await response.json();
 //         console.log("User updated:", data);
 //         toast.success("User updated successfully!");
@@ -96,9 +91,9 @@
 //                         <button className="panel-button" onClick={handleUploadClick}>
 //                           Upload
 //                         </button>
-      
+
 //                       </div>
-      
+
 //                       <div className="userInfo">
 //                           <p className="profileUsername">Username: {user.nickname}</p>
 //                           <p className = "profileAge">Age: {user.age}</p>
@@ -107,7 +102,7 @@
 //                           </button>
 //                       </div>
 //                   </div>
-                  
+
 //                   <h1 style={{ fontSize: 36, color: "white" }}>Recent</h1>
 //                   <div className="category-recent">
 //                       {recentFilms.map((film, index) => {
@@ -118,7 +113,7 @@
 //                       })}
 //                   </div>
 //                   <h1 style={{ fontSize: 36, color: "white" }}>Favourite</h1>
-      
+
 //                 {user.favouriteMovies ? <div className="category-recent">
 //                       {user.favouriteMovies.map((film, index) => {
 //                           if (index < 10){
@@ -127,11 +122,11 @@
 //                           return null
 //                       })}
 //                   </div> : <p> No </p>}
-                  
+
 //               </div>
 //               <Footer />
 //           </div>
 //   )
 // }
 
-export {}
+export {};

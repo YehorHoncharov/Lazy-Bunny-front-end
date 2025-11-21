@@ -2,17 +2,20 @@ import { useParams } from "react-router-dom";
 import { useUserByID } from "../../hooks/useUserById";
 import { ProgressBar } from "react-loader-spinner";
 import { useState, useRef, useEffect } from "react";
-import * as yup from 'yup';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import * as yup from "yup";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./AdminProfile.css";
 
 const userSchema = yup.object().shape({
-  nickname: yup.string().required('Nickname is required'),
-  password: yup.string().min(6, 'Password must be at least 6 characters'),
-  email: yup.string().email('Invalid email').required('Email is required'),
-  age: yup.number().positive('Age must be a positive number').integer('Age must be an integer'),
+  nickname: yup.string().required("Nickname is required"),
+  password: yup.string().min(6, "Password must be at least 6 characters"),
+  email: yup.string().email("Invalid email").required("Email is required"),
+  age: yup
+    .number()
+    .positive("Age must be a positive number")
+    .integer("Age must be an integer"),
 });
 
 export function AdminProfile() {
@@ -73,7 +76,7 @@ export function AdminProfile() {
         formData.append("image", user.image);
       }
 
-      const response = await fetch(`http://localhost:3001/users/${id}`, {
+      const response = await fetch(`http://localhost:3000/users/${id}`, {
         method: "PUT",
         body: formData,
       });

@@ -1,69 +1,105 @@
-# Lazy Bunny – Фронтенд для платформи перегляду фільмів
+# Lazy Bunny – Movie Platform Frontend
 
-## Опис проекту
+## 📝 Project Description
 
-Lazy Bunny – це інтерактивний веб-сайт для пошуку та перегляду інформації про фільми. Проект був розроблений у рамках вивчення клієнт-серверної архітектури як частина дипломної роботи. Цей репозиторій містить фронтенд-додаток, створений з використанням React.
+Lazy Bunny is an interactive web application for discovering and tracking movies. This project was developed as part of a diploma thesis to demonstrate client-server architecture skills.
 
-Додаток дозволяє користувачам реєструватися та авторизуватися, вести список переглянутих фільмів, ставити оцінки, коментувати, а також використовувати сторінку адміністратора та редагувати сторінки фільмів та базу даних.
+This repository contains the **frontend application** built with React and TypeScript.
 
-## Функціонал
+The application allows users to:
 
-- Авторизація та реєстрація
-- Профіль користувача
-- Каталог фільмів
-- Написання коментарів
-- Адміністрація фільмів
-- Адаптивна верстка
+- Register and log in securely.
+- Maintain a list of watched movies.
+- Rate movies and leave comments.
+- Access an admin dashboard to manage the movie database (for administrators).
 
-## Технології та стек
+## 🚀 Features
 
-- Мова: TypeScript
-- Фреймворк: React
-- Роутінг: React Router
-- Стан: React Context
-- Форма: useForm Hook
-- Стилі: CSS
-- Запити: Fetch
-- Аутентификація: JWT
+- **Authentication:** User registration and login (JWT).
+- **User Profile:** Profile management and personalized lists.
+- **Movie Catalog:** Browse, search, and filter movies.
+- **Social:** Commenting and rating system.
+- **Administration:** Admin panel for managing movies and users.
+- **UI/UX:** Responsive design for mobile and desktop.
 
-## Figma
+## 🛠 Tech Stack
 
-[Посилання на Figma](https://www.figma.com/design/lSgKi45c1FHlTY2ZmJVZKe/Untitled?node-id=0-1&node-type=canvas&t=aKdqfdVHJvUOAvpC-0)
+- **Language:** TypeScript
+- **Framework:** React
+- **Routing:** React Router
+- **State Management:** React Context API
+- **Forms:** React Hook Form
+- **Styling:** CSS
+- **API Requests:** Fetch API
+- **Authentication:** JWT
 
-## Запуск проекту
+## 🎨 Design & Architecture
 
-1. Клонування репозиторію `git clone`
-2. Встановлення залежностей ``npm install``
-3. Запуск проекту ```npm run start```
+- [Figma Design Link](https://www.figma.com/design/lSgKi45c1FHlTY2ZmJVZKe/Untitled?node-id=0-1&node-type=canvas&t=aKdqfdVHJvUOAvpC-0)
+- [Architecture Scheme (FigJam)](https://www.figma.com/board/54Dk4yuXwkKUK6LWMj9ubF/LazyBunny-FrontEnd-Scheme?node-id=0-1&t=BauMz8cwub6znSef-1)
 
-## Структура проекту
+## ⚙️ Getting Started
 
- ```mermaid
+### Prerequisites
 
-    graph TD;
-    root[Проект] --> public[public/]
-    root --> src[src/]
-    root --> env[.env]
-    root --> gitignore[.gitignore]
-    root --> readme[README.md]
-    root --> packageLock[package-lock.json]
-    root --> package[package.json]
-    root --> tsconfig[tsconfig.json]
-    src --> context
-    src --> hooks
-    src --> pages
-    src --> shared
-    src --> index.tsx
-    public[public/] --> img[img/]
-    img[img/] --> index.html
-    
+- Node.js (v16 or higher)
+- NPM
+
+# Install Dependencies
+
+```bash
+npm install
 ```
 
-[Посилання на FigJam-схему](https://www.figma.com/board/54Dk4yuXwkKUK6LWMj9ubF/LazyBunny-FrontEnd-Scheme?node-id=0-1&t=BauMz8cwub6znSef-1)
+---
 
-## Команда розробки
+# Environment Configuration
 
-- Єгор Гончаров - [GitHub](https://github.com/YehorHoncharov)
-- Семен Гераймович - [GitHub](https://github.com/arman455)
-- Богдан Рубанов - [GitHub](https://github.com/BohdanRubanov)
-- Мирослава Теліус - [GitHub](https://github.com/AsolaRim)
+Create a `.env` file in the root directory and add your API URL:
+
+```
+REACT_APP_API_URL=http://localhost:3000/
+```
+
+---
+
+# Run the Project
+
+```bash
+npm start
+```
+
+The application will be available at:
+
+```
+http://localhost:3000
+```
+
+---
+
+# 📂 Project Structure
+
+```mermaid
+graph TD;
+    root[Project Root] --> public[public/]
+    root --> src[src/]
+    root --> env[.env]
+    root --> package[package.json]
+
+    src --> context[context/ - Global State]
+    src --> hooks[hooks/ - Custom Hooks]
+    src --> pages[pages/ - Route Components]
+    src --> shared[shared/ - Reusable UI]
+    src --> index[index.tsx]
+
+    public --> indexHtml[index.html]
+    public --> img[img/ - Static Assets]
+```
+
+---
+
+# 👥 Development Team
+
+- **Yehor Honcharov** – [GitHub](https://github.com/YehorHoncharov)
+- **Semen Heraimovych** – [GitHub](https://github.com/sema-gr)
+- **Bohdan Rubanov** – [GitHub](https://github.com/BohdanRubanov)

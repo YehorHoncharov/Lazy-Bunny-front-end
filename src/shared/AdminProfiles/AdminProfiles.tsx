@@ -16,7 +16,7 @@ export function AdminProfiles() {
     setSearchResults(users);
   }, [users]);
 
-  function handleSearchChange(value: string){
+  function handleSearchChange(value: string) {
     setSearchValue(value);
 
     const filteredResults = users.filter(
@@ -26,15 +26,14 @@ export function AdminProfiles() {
     );
 
     setSearchResults(filteredResults);
-  };
+  }
 
-
-  async function handleDelete(event: React.MouseEvent, userId: number){
+  async function handleDelete(event: React.MouseEvent, userId: number) {
     console.log("Delete button clicked");
     event.stopPropagation();
 
     try {
-      const response = await fetch(`http://localhost:3001/users/${userId}`, {
+      const response = await fetch(`http://localhost:3000/users/${userId}`, {
         method: "DELETE",
       });
 
@@ -47,7 +46,7 @@ export function AdminProfiles() {
     } catch (error) {
       console.error("Error deleting user:", error);
     }
-  };
+  }
 
   return (
     <div className="adminProfiles">
@@ -93,36 +92,34 @@ export function AdminProfiles() {
               <tr>
                 <td colSpan={5}>{error}</td>
               </tr>
-            ) : (
-              searchResults.length > 0 ? (
-                searchResults.map((user) => (
-                  <tr
-                    key={user.id}
-                    onClick={() => navigate(`/admin/profile/${user.id}`)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <td>{user.nickname}</td>
-                    <td>{user.email}</td>
-                    <td>{user.role}</td>
-                    <td>{user.age}</td>
-                    <td className="actions">
-                      <button
-                        className="delete"
-                        onClick={(event) => handleDelete(event, user.id)}
-                      >
-                        <img src="/static/img/trash-2.png" alt="Delete" />
-                      </button>
-                      <button className="edit">
-                        <img src="/static/img/edit-3.png" alt="Edit" />
-                      </button>
-                    </td>
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={5}>No results found.</td>
+            ) : searchResults.length > 0 ? (
+              searchResults.map((user) => (
+                <tr
+                  key={user.id}
+                  onClick={() => navigate(`/admin/profile/${user.id}`)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <td>{user.nickname}</td>
+                  <td>{user.email}</td>
+                  <td>{user.role}</td>
+                  <td>{user.age}</td>
+                  <td className="actions">
+                    <button
+                      className="delete"
+                      onClick={(event) => handleDelete(event, user.id)}
+                    >
+                      <img src="/static/img/trash-2.png" alt="Delete" />
+                    </button>
+                    <button className="edit">
+                      <img src="/static/img/edit-3.png" alt="Edit" />
+                    </button>
+                  </td>
                 </tr>
-              )
+              ))
+            ) : (
+              <tr>
+                <td colSpan={5}>No results found.</td>
+              </tr>
             )}
           </tbody>
         </table>

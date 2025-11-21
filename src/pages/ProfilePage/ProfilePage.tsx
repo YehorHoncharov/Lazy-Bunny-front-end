@@ -24,16 +24,19 @@ export function ProfilePage() {
     const loadUserData = async () => {
       if (user && !initialLoadDone) {
         try {
-          const response = await fetch(`http://localhost:3001/users/${user.id}`);
-          
+          const response = await fetch(
+            `http://localhost:3000/users/${user.id}`
+          );
+
           if (!isMounted) return;
           if (!response.ok) throw new Error("Failed to fetch user data");
-          
+
           const userData = await response.json();
-          
+
           if (isMounted) {
             setSelectedImage(userData.image || null);
-            const movies = userData.favoriteMovies || userData.favouriteMovies || [];
+            const movies =
+              userData.favoriteMovies || userData.favouriteMovies || [];
             setFavouriteMovies(movies);
             // Видалено updateUser, щоб уникнути зайвих рендерів
             setInitialLoadDone(true);
@@ -58,25 +61,28 @@ export function ProfilePage() {
   async function updateFavouriteMovies() {
     try {
       if (!user) return;
-      
-      const response = await fetch(`http://localhost:3001/users/${user.id}`);
+
+      const response = await fetch(`http://localhost:3000/users/${user.id}`);
       if (!response.ok) throw new Error("Failed to fetch updated data");
-      
+
       const updatedUser = await response.json();
       updateUser(updatedUser);
-      const movies = updatedUser.favoriteMovies || updatedUser.favouriteMovies || [];
+      const movies =
+        updatedUser.favoriteMovies || updatedUser.favouriteMovies || [];
       setFavouriteMovies(movies);
     } catch (error) {
       console.error("Error updating favourite movies:", error);
     }
   }
 
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     if (event.target.files?.[0]) {
       const file = event.target.files[0];
       const imageUrl = URL.createObjectURL(file);
       setSelectedImage(imageUrl);
-      
+
       try {
         const uploadedImage = await uploadImage(file);
         if (uploadedImage?.imageUrl) {
@@ -92,12 +98,15 @@ export function ProfilePage() {
     try {
       const formData = new FormData();
       formData.append("image", file);
-      
-      const response = await fetch(`http://localhost:3001/users/${user?.id}/image`, {
-        method: 'POST',
-        body: formData
-      });
-      
+
+      const response = await fetch(
+        `http://localhost:3000/users/${user?.id}/image`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
       if (!response.ok) throw new Error("Failed to upload image");
       return await response.json();
     } catch (error) {
@@ -108,14 +117,14 @@ export function ProfilePage() {
 
   const handleSave = async () => {
     if (!user || isSaving) return;
-    
+
     try {
       setIsSaving(true);
       const userData = {
-        image: selectedImage || user.image
+        image: selectedImage || user.image,
       };
 
-      const response = await fetch(`http://localhost:3001/users/${user.id}`, {
+      const response = await fetch(`http://localhost:3000/users/${user.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -157,8 +166,8 @@ export function ProfilePage() {
               ref={fileInputRef}
               style={{ display: "none" }}
             />
-            <button 
-              className="panel-button" 
+            <button
+              className="panel-button"
               onClick={handleUploadClick}
               disabled={isSaving}
             >
@@ -168,7 +177,7 @@ export function ProfilePage() {
 
           <div className="userInfo">
             <p className="profile-username">Username: {user.nickname}</p>
-            <p className="profile-age">Age: {user.age || 'Not specified'}</p>
+            <p className="profile-age">Age: {user.age || "Not specified"}</p>
             {/* <button 
               className="panel-button" 
               onClick={handleSave}
@@ -178,26 +187,31 @@ export function ProfilePage() {
             </button> */}
           </div>
         </div>
-        
+
         <h1 style={{ fontSize: 36, color: "white" }}>Recent</h1>
         <div className="category-recent">
           {recentFilms.slice(0, 5).map((film) => (
-            <Card key={`film-${film.id}`} film={film} onUpdate={updateFavouriteMovies}/>
+            <Card
+              key={`film-${film.id}`}
+              film={film}
+              onUpdate={updateFavouriteMovies}
+            />
           ))}
         </div>
-        
+
         <h1 style={{ fontSize: 36, color: "white" }}>Favorites</h1>
         <div className="category-recent">
           {favouriteMovies.length > 0 ? (
             favouriteMovies
-              .filter((film, index, self) => 
-                index === self.findIndex(f => f.id === film.id)
+              .filter(
+                (film, index, self) =>
+                  index === self.findIndex((f) => f.id === film.id)
               )
               .slice(0, 10)
               .map((film) => (
-                <Card 
+                <Card
                   key={`film-${film.id}`}
-                  film={film} 
+                  film={film}
                   onUpdate={updateFavouriteMovies}
                 />
               ))
